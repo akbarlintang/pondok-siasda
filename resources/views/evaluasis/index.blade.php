@@ -20,34 +20,35 @@
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <select id="jenjang" name="jenjang" required
                     class="bg-blue-500 text-white  block w-full mt-1 text-sm form-select hover:shadow-outline-purple rounded-md mt-7 py-3">
-                    <option class="border-black bg-white text-black" disabled selected>--Pilih Jenjang--</option>
-                    <option class="border-black bg-white text-black" value="smk">SMK</option>
-                    <option class="border-black bg-white text-black" value="ma">MA</option>
-                    <option class="border-black bg-white text-black" value="mts">MTS</option>
+                    <option class="border-black bg-white text-black" disabled selected hidden>--Pilih Jenjang--</option>
+                    <option class="border-black bg-white text-black" value="smk" {{ $jenjang == 'smk' ? 'selected' : '' }}>SMK</option>
+                    <option class="border-black bg-white text-black" value="ma" {{ $jenjang == 'ma' ? 'selected' : '' }}>MA</option>
+                    <option class="border-black bg-white text-black" value="mts" {{ $jenjang == 'mts' ? 'selected' : '' }}>MTS</option>
                 </select>
             </div>
 
             <div class="mx-auto sm:px-6 lg:px-8">
                 <select id="tingkatan" name="tingkatan" required
                 class="bg-blue-500 text-white  block w-full mt-1 text-sm form-select hover:shadow-outline-purple rounded-md mt-7 py-3">
-                    <option class="border-black bg-white text-black" disabled selected>--Pilih Tingkatan--</option>
-                    <option class="border-black bg-white text-black" value="1">1</option>
-                    <option class="border-black bg-white text-black" value="2">2</option>
-                    <option class="border-black bg-white text-black" value="3">3</option>
+                    <option class="border-black bg-white text-black" disabled selected hidden>--Pilih Tingkatan--</option>
+                    <option class="border-black bg-white text-black" value="1" {{ $tingkat == '1' ? 'selected' : '' }}>1</option>
+                    <option class="border-black bg-white text-black" value="2" {{ $tingkat == '2' ? 'selected' : '' }}>2</option>
+                    <option class="border-black bg-white text-black" value="3" {{ $tingkat == '3' ? 'selected' : '' }}>3</option>
                 </select>
             </div>
 
             <div class="mx-auto sm:px-6 lg:px-8">
                 <select id="kelas" name="kelas" required
                     class="bg-blue-500 text-white  block w-full mt-1 text-sm form-select hover:shadow-outline-purple rounded-md mt-7 py-3">
-                    <option class="border-black bg-white text-black" disabled selected>--Pilih Kelas--</option>
-                    <option class="border-black bg-white text-black" value="A">A</option>
-                    <option class="border-black bg-white text-black" value="B">B</option>
-                    <option class="border-black bg-white text-black" value="C">C</option>
-                    <option class="border-black bg-white text-black" value="D">D</option>
-                    <option class="border-black bg-white text-black" value="E">E</option>
+                    <option class="border-black bg-white text-black" disabled selected hidden>--Pilih Kelas--</option>
+                    <option class="border-black bg-white text-black" value="A" {{ $kelas == 'A' ? 'selected' : '' }}>A</option>
+                    <option class="border-black bg-white text-black" value="B" {{ $kelas == 'B' ? 'selected' : '' }}>B</option>
+                    <option class="border-black bg-white text-black" value="C" {{ $kelas == 'C' ? 'selected' : '' }}>C</option>
+                    <option class="border-black bg-white text-black" value="D" {{ $kelas == 'D' ? 'selected' : '' }}>D</option>
+                    <option class="border-black bg-white text-black" value="E" {{ $kelas == 'E' ? 'selected' : '' }}>E</option>
                 </select>
             </div>
+
             <div class="mx-auto sm:px-6 lg:px-8">
                 <button class="hover:bg-blue-400 bg-blue-500 delay-75 duration-100 text-white text-sm font-bold rounded-2xl px-10 py-3 mt-7 border-b-4 border-b-green-600 w-12/12">
                     Cari

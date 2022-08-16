@@ -16,6 +16,16 @@ class EkstraSiswa extends Model
 
     public function ekstra()
     {
-        return $this->hasMany(Ekstra::class,'id', 'foreign_ekstra');
+        return $this->hasOne(Ekstra::class,'id', 'foreign_ekstra');
+    }
+
+    public function presensiekstra()
+    {
+        return $this->hasMany(PresensiEkstra::class,'id', 'foreign_ekstra');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'foreign_siswa', 'id', 'siswa');
     }
 }

@@ -14,8 +14,8 @@
             </h2>
         </x-slot>
     @endif
-    <form action="{{route('hapalans.index')}}" method="get" enctype="multipart/form-data">
-    @csrf
+    <form action="{{route('penilaians.index')}}" method="get" enctype="multipart/form-data">
+        @csrf
         <div class="grid grid grid-cols-4">        
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <select id="jenjang" name="jenjang" required
@@ -63,26 +63,16 @@
             @php
                 $data = [];
                 $count = 0;
-                // dd($siswas);
             @endphp
             @foreach ($siswas as $siswa)
                 @php
                     $data[$count][1] = $siswa->nama_siswa;
                     $data[$count][2] = $siswa->nis;
-                    $data[$count][3] = $siswa->tingkatan;
-                    $data[$count][4] = $siswa->kelas;
-                    if (count($siswa->hapalans) > 0 ) {
-                        $data[$count][5] = $siswa->hapalans->last()->hapalan;
-                        $data[$count][6] = \Carbon\Carbon::parse($siswa->hapalans->last()->tanggal)->format('d M Y');
-                    } else {
-                        $data[$count][5] = 'belum ada';
-                        $data[$count][6] = 'belum ada';
-                    }
-                    $data[$count][7] = $siswa->id;
+                    $data[$count][3] = $siswa->id;
                     $count++;
-                    @endphp
+                @endphp
             @endforeach
-            
+
             <body class="flex items-center justify-center">
                 <div class="container block">
                     <table
@@ -99,22 +89,6 @@
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     NIS
                                 </th>
-                                {{-- <th
-                                    class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Tingkat
-                                </th>
-                                <th
-                                    class="p-3 font-bold row-2 uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Kelas
-                                </th> --}}
-                                <th
-                                    class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Hapalan Terakhir
-                                </th>
-                                <th
-                                    class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Tanggal
-                                </th>
                                 <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Aksi
@@ -129,55 +103,33 @@
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tanggal</span>
                                             {{ $data[$i][1] }}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">NIS</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
                                             {{ $data[$i][2] }}
-                                    </td>
-                                    {{-- <td
-                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                        <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tingkat</span>
-                                            {{ $data[$i][3] }}
-                                    </td>
-                                    <td
-                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                        <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Kelas</span>
-                                            {{ $data[$i][4] }}
-                                    </td>     --}}
-                                    <td
-                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                        <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Hapalan Terakhir</span>
-                                        {{ $data[$i][5] }}
-                                    </td>
-                                    <td
-                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                        <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tanggal</span>
-                                        {{$data[$i][6]}}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                         <span
                                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                        <a href="{{ route('hapalans.show', $data[$i][7]) }}"
+                                        <a href="{{ route('penilaians.show', $data[$i][3]) }}"
                                             class="text-blue-400 hover:text-blue-600 underline pl-6">Lihat</a>
-                                        <a href="{{ route('hapalans.create', ['id' => $data[$i][7]]) }}"
-                                            class="text-blue-400 hover:text-blue-600 underline pl-6">Tambah</a>
+                                        {{-- <a href="{{ URL::to('/siswas/destroy/.', $data[$i][3]) }}"
+                                            class="text-blue-400 hover:text-blue-600 underline pl-6"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Remove</a> --}}
                                     </td>
                                 </tr>
                             @endfor
                         </tbody>
                     </table>
-                    {{-- {{ $siswas->links() }} --}}
+                    {{ $siswas->links() }}
                 </div>
             </body>
+
             <style>
                 html,
                 body {
@@ -203,10 +155,10 @@
                 }
 
             </style>
-            {{-- <a href="{{route('hapalans.create')}}">
-                <button title="Tambah"
-                class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
-            </a> --}}
+            <a href="{{route('siswas.create')}}">
+            <button title="Contact Sale"
+            class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
+            </a>   
         </div>
     </div>
 </x-app-layout>

@@ -20,6 +20,7 @@ class Siswa extends Model
       'tahun_masuk',
       'wali_kamar',
       'nomor_wali',
+      'user_id',
     ];
 
     public function spps()
@@ -39,13 +40,17 @@ class Siswa extends Model
 
     public function ekstra_siswas()
     {
-        return $this->hasMany(EkstraSiswa::class,'foreign_siswa');
+        return $this->hasOne(EkstraSiswa::class,'foreign_siswa');
     }
 
     public function presensi_ekstra()
     {
         return $this->hasMany(PresensiEkstra::class,'foreign_siswa');
     }
-    
 
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+    
 }

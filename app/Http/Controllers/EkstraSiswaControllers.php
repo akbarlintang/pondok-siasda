@@ -94,7 +94,17 @@ class EkstraSiswaControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return 'asd';
+        return $request;
+        $ekstra = EkstraSiswa::where('foreign_siswa', $id)->first();
+        // return $ekstra;
+        if ($ekstra) {
+            EkstraSiswa::where('foreign_siswa', $id)->update([
+                'foreign'
+            ]);
+        } else {
+            # code...
+        }
     }
 
     /**
@@ -106,5 +116,24 @@ class EkstraSiswaControllers extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ubah(Request $request, $id)
+    {
+        $ekstra = EkstraSiswa::where('foreign_siswa', $id)->first();
+
+        if ($ekstra) {
+            EkstraSiswa::where('foreign_siswa', $id)->update([
+                'foreign_ekstra' => $request->ekstra
+            ]);
+        } else {
+            EkstraSiswa::create([
+                'foreign_ekstra' => $request->ekstra,
+                'foreign_siswa' => $id
+            ]);
+        }
+
+        return redirect()->route('ekstrasiswas.index')
+        ->with(['success' => 'Berhasil Menguybah Ekstra Siswa']);
     }
 }

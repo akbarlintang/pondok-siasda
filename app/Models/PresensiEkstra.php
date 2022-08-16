@@ -10,9 +10,13 @@ class PresensiEkstra extends Model
     use HasFactory;
 
     protected $fillable =[
-        'foreign_siswa',
         'foreign_ekstrasiswa',
         'tanggal',
         'status'
     ];
+
+    public function ekstra_siswas()
+    {
+        return $this->belongsTo(EkstraSiswa::class, 'foreign_ekstrasiswa', 'id', 'ekstra_siswas');
+    }
 }

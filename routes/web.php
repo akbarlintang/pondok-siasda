@@ -5,6 +5,9 @@ use App\Http\Controllers\HapalanControllers;
 use App\Http\Controllers\SPPControllers;
 use App\Http\Controllers\EvaluasiControllers;
 use App\Http\Controllers\EkstraSiswaControllers;
+use App\Http\Controllers\PresensiEkstraControllers;
+use App\Http\Controllers\GuruControllers;
+use App\Http\Controllers\PenilaianControllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,18 +30,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('siswas',SiswaControllers::class);
-Route::resource('hapalans',HapalanControllers::class);
-Route::resource('spps',SPPControllers::class);
-Route::resource('evaluasis',EvaluasiControllers::class);
-Route::resource('ekstrasiswas',EkstraSiswaControllers::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/siswas/index', 'App\Http\Controllers\SiswaControllers@index2')->name('siswas.index2');
+    Route::post('/siswas/add', 'App\Http\Controllers\SiswaControllers@add')->name('siswas.add');
+    Route::post('/presensiekstras/updateAll', 'App\Http\Controllers\PresensiEkstraControllers@updateAll')->name('presensiekstras.updateAll');
+    Route::resource('siswas',SiswaControllers::class);
+    Route::resource('hapalans',HapalanControllers::class);
+    Route::resource('spps',SPPControllers::class);
+    Route::resource('evaluasis',EvaluasiControllers::class);
+    Route::resource('ekstrasiswas',EkstraSiswaControllers::class);
+    Route::get('ekstrasiswas/ubah/{id}', 'App\Http\Controllers\EkstraSiswaControllers@ubah')->name('ekstrasiswas.ubah');
+    Route::resource('presensiekstras',PresensiEkstraControllers::class);
+
+    Route::resource('gurus',GuruControllers::class);
+    Route::get('gurus/delete/{id}', 'App\Http\Controllers\GuruControllers@delete')->name('gurus.delete');
+
+    Route::resource('penilaians',PenilaianControllers::class);
+    Route::get('penilaians/ubah/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@ubah')->name('penilaians.ubah');
+    Route::patch('penilaians/simpan/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@simpan')->name('penilaians.simpan');
+
+    Route::get('rekap-ekstra/show/{id}', 'App\Http\Controllers\RekapEkstraControllers@show')->name('rekap-ekstra.show');
+
+    Route::get('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@index')->name('user-roles.index');
+    Route::post('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@store')->name('user-roles.store');
+    Route::get('/permissions/get/{id}', 'App\Http\Controllers\UserRolesControllers@get')->name('user-roles.get');
+});
 
 Route::get('/profil', function () {
     return view('berita');

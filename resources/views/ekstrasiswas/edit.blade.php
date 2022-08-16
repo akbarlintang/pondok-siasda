@@ -9,7 +9,7 @@
                     </button>
                 </a>
                 <h4 class="mb-6 mt-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
-                    Masukkan Hapalan Siswa
+                    Edit Ekstra Siswa
                 </h4>
                 
                 @php
@@ -17,9 +17,10 @@
                 @endphp
 
                 <div class="mt-1 px-4 py-3 mb-2 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                    <form name="daftar" action="{{ route('ekstrasiswas.update',$siswas->id) }}" method="POST" 
+                    <form action="{{ route('ekstrasiswas.ubah',$siswas->id) }}" method="PATCH" 
                         enctype="multipart/form-data">
-                        @csrf
+                        {{ method_field('PATCH') }}
+                        {{ csrf_field() }}
 
                         <input type="text"
                         value={{$siswas->id}}
@@ -48,7 +49,7 @@
                             <select id="jenjang" name="jenjang" required
                                 disabled    
                                 class="border-black block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md">
-                                <option disabled selected>{{$siswas->jenjang}}</option>
+                                <option disabled selected>{{strtoupper($siswas->jenjang)}}</option>
                             </select>
                         </label>
 
@@ -71,19 +72,15 @@
                         </label>
                         
                         <label class="block text-sm mt-2">
-                            <span class="text-gray-700 dark:text-gray-400">Hapalan Terbaru</span>
+                            <span class="text-gray-700 dark:text-gray-400">Ekstra</span>
+                            <br>
                             <select name="ekstra">
+                                <option value="" selected disabled hidden>-- Pilih Ekstra --</option>
                                 @foreach ($ekstrakurikuler as $ekstra)
-                                    <option value="{{$ekstra->id}}">{{$ekstra->nama}}</option>
+                                    <option class="border-black rounded-md form-select" value="{{$ekstra->id}}" {{ $siswas->ekstra_siswas == null ? '' : ($siswas->ekstra_siswas->foreign_ekstra == $ekstra->id ? 'selected' : '') }}>{{$ekstra->nama}}</option>
                                 @endforeach
                             </select>
-                        </label>                        
-                        {{-- <label class="block text-sm mt-2">
-                            <span class="text-gray-700 dark:text-gray-400">Tanggal Hapalan Terbaru</span>
-                            <input type="date"
-                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
-                                name="tanggal" placeholder="Tanggal Hapalan Terbaru..." />
-                        </label> --}}
+                        </label>
                         <div class="mt-5">
                             <button type="submit"
                             class="bg-blue-500 text-white py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Tambah</button>

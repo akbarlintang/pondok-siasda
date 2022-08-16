@@ -14,13 +14,13 @@
             </h2>
         </x-slot>
     @endif
-    <form action="{{route('hapalans.index')}}" method="get" enctype="multipart/form-data">
-    @csrf
+    {{-- <form action="{{route('siswas.index')}}" method="get" enctype="multipart/form-data">
+        @csrf
         <div class="grid grid grid-cols-4">        
             <div class="mx-auto sm:px-6 lg:px-8 ">
                 <select id="jenjang" name="jenjang" required
                     class="bg-blue-500 text-white  block w-full mt-1 text-sm form-select hover:shadow-outline-purple rounded-md mt-7 py-3">
-                    <option class="border-black bg-white text-black" disabled selected hidden>--Pilih Jenjang--</option>
+                    <option class="border-black bg-white text-black" disabled selected>--Pilih Jenjang--</option>
                     <option class="border-black bg-white text-black" value="smk" {{ $jenjang == 'smk' ? 'selected' : '' }}>SMK</option>
                     <option class="border-black bg-white text-black" value="ma" {{ $jenjang == 'ma' ? 'selected' : '' }}>MA</option>
                     <option class="border-black bg-white text-black" value="mts" {{ $jenjang == 'mts' ? 'selected' : '' }}>MTS</option>
@@ -30,7 +30,7 @@
             <div class="mx-auto sm:px-6 lg:px-8">
                 <select id="tingkatan" name="tingkatan" required
                 class="bg-blue-500 text-white  block w-full mt-1 text-sm form-select hover:shadow-outline-purple rounded-md mt-7 py-3">
-                    <option class="border-black bg-white text-black" disabled selected hidden>--Pilih Tingkatan--</option>
+                    <option class="border-black bg-white text-black" disabled selected>--Pilih Tingkatan--</option>
                     <option class="border-black bg-white text-black" value="1" {{ $tingkat == '1' ? 'selected' : '' }}>1</option>
                     <option class="border-black bg-white text-black" value="2" {{ $tingkat == '2' ? 'selected' : '' }}>2</option>
                     <option class="border-black bg-white text-black" value="3" {{ $tingkat == '3' ? 'selected' : '' }}>3</option>
@@ -40,7 +40,7 @@
             <div class="mx-auto sm:px-6 lg:px-8">
                 <select id="kelas" name="kelas" required
                     class="bg-blue-500 text-white  block w-full mt-1 text-sm form-select hover:shadow-outline-purple rounded-md mt-7 py-3">
-                    <option class="border-black bg-white text-black" disabled selected hidden>--Pilih Kelas--</option>
+                    <option class="border-black bg-white text-black" disabled selected>--Pilih Kelas--</option>
                     <option class="border-black bg-white text-black" value="A" {{ $kelas == 'A' ? 'selected' : '' }}>A</option>
                     <option class="border-black bg-white text-black" value="B" {{ $kelas == 'B' ? 'selected' : '' }}>B</option>
                     <option class="border-black bg-white text-black" value="C" {{ $kelas == 'C' ? 'selected' : '' }}>C</option>
@@ -55,34 +55,27 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> --}}
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <p>Menampilkan {{strtoupper($jenjang)}} Tingkat {{$tingkat}} Kelas {{$kelas}}</p>
+            <p>Menampilkan Seluruh Data Guru</p>
             <!-- component -->
             @php
                 $data = [];
                 $count = 0;
-                // dd($siswas);
             @endphp
-            @foreach ($siswas as $siswa)
+            @foreach ($gurus as $guru)
                 @php
-                    $data[$count][1] = $siswa->nama_siswa;
-                    $data[$count][2] = $siswa->nis;
-                    $data[$count][3] = $siswa->tingkatan;
-                    $data[$count][4] = $siswa->kelas;
-                    if (count($siswa->hapalans) > 0 ) {
-                        $data[$count][5] = $siswa->hapalans->last()->hapalan;
-                        $data[$count][6] = \Carbon\Carbon::parse($siswa->hapalans->last()->tanggal)->format('d M Y');
-                    } else {
-                        $data[$count][5] = 'belum ada';
-                        $data[$count][6] = 'belum ada';
-                    }
-                    $data[$count][7] = $siswa->id;
+                    $data[$count][0] = $guru->tanggal_lahir;
+                    $data[$count][1] = $guru->nama;
+                    $data[$count][2] = $guru->nik;
+                    $data[$count][3] = $guru->tempat_lahir;
+                    $data[$count][4] = $guru->tahun_masuk;
+                    $data[$count][5] = $guru->id;
                     $count++;
-                    @endphp
+                @endphp
             @endforeach
-            
+
             <body class="flex items-center justify-center">
                 <div class="container block">
                     <table
@@ -97,23 +90,15 @@
                                 </th>
                                 <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    NIS
+                                    NIK
                                 </th>
-                                {{-- <th
+                                <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Tingkat
+                                    TTL
                                 </th>
                                 <th
                                     class="p-3 font-bold row-2 uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Kelas
-                                </th> --}}
-                                <th
-                                    class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Hapalan Terakhir
-                                </th>
-                                <th
-                                    class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                                    Tanggal
+                                    Tahun Masuk
                                 </th>
                                 <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
@@ -129,55 +114,45 @@
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tanggal</span>
                                             {{ $data[$i][1] }}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">NIS</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
                                             {{ $data[$i][2] }}
                                     </td>
-                                    {{-- <td
+                                    <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tingkat</span>
-                                            {{ $data[$i][3] }}
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
+                                            {{ $data[$i][3] }}, <br> {{ \Carbon\Carbon::parse($data[$i][0])->format('d M Y') }}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Kelas</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
                                             {{ $data[$i][4] }}
-                                    </td>     --}}
-                                    <td
-                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                        <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Hapalan Terakhir</span>
-                                        {{ $data[$i][5] }}
-                                    </td>
-                                    <td
-                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                        <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tanggal</span>
-                                        {{$data[$i][6]}}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                         <span
                                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                        <a href="{{ route('hapalans.show', $data[$i][7]) }}"
-                                            class="text-blue-400 hover:text-blue-600 underline pl-6">Lihat</a>
-                                        <a href="{{ route('hapalans.create', ['id' => $data[$i][7]]) }}"
-                                            class="text-blue-400 hover:text-blue-600 underline pl-6">Tambah</a>
+                                        <a href="{{ route('gurus.edit', $data[$i][5]) }}"
+                                            class="text-blue-400 hover:text-blue-600 underline pl-6">Edit</a>
+                                        <a href="{{ route('gurus.delete', $data[$i][5]) }}"
+                                            class="text-blue-400 hover:text-blue-600 underline pl-6"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Remove</a>
                                     </td>
                                 </tr>
                             @endfor
                         </tbody>
                     </table>
-                    {{-- {{ $siswas->links() }} --}}
+                    {{ $gurus->links() }}
                 </div>
             </body>
+
             <style>
                 html,
                 body {
@@ -203,10 +178,10 @@
                 }
 
             </style>
-            {{-- <a href="{{route('hapalans.create')}}">
-                <button title="Tambah"
-                class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
-            </a> --}}
+            <a href="{{route('gurus.create')}}">
+            <button title="Tambah data"
+            class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
+            </a>   
         </div>
     </div>
 </x-app-layout>

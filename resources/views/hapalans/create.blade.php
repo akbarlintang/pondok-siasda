@@ -48,7 +48,7 @@
                             <select id="jenjang" name="jenjang" required
                                 disabled    
                                 class="border-black block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md">
-                                <option disabled selected>{{$siswas->jenjang}}</option>
+                                <option disabled selected>{{strtoupper($siswas->jenjang)}}</option>
                             </select>
                         </label>
 

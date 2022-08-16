@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Siswa;
+use App\Models\{Siswa, User, Role};
+use Illuminate\Support\Facades\Hash;
 
 class SiswaControllers extends Controller
 {
@@ -55,6 +56,18 @@ class SiswaControllers extends Controller
      */
     public function store(Request $request)
     {
+        $user_data = array(
+            'name' => $request->nama_siswa,
+            'email' => $request->email_siswa,
+            'password' => Hash::make('password'),
+        );
+
+        User::create($user_data);
+        $user = User::latest('id')->first();
+
+        // Beri role user untuk user yang baru dibuat
+        $user->assignRole('Siswa');
+
         $form_data = array(
             'nama_siswa'       =>   $request->nama_siswa,
             'nis'       =>   $request->nis,
@@ -66,11 +79,10 @@ class SiswaControllers extends Controller
             'tahun_masuk' => $request->tahun_masuk,
             'wali_kamar'       =>   $request->wali_kamar,
             'nomor_wali'       =>   $request->nomor_wali,
+            'user_id' => $user->id,
         );
 
         Siswa::create($form_data);
-
-        // $id = Siswa::where('');
 
         $form = array(
 
@@ -125,6 +137,20 @@ class SiswaControllers extends Controller
         ]);
 
         return redirect()->route('siswas.index')
+        ->with(['success'=>'Siswa Berhasil Disunting !']);
+    }
+
+    public function index2()
+    {
+        return view('siswas.index2');
+    }
+
+    public function add(Request $request)
+    {
+        // Siswa::get();
+        Siswa::where('tahun_masuk',$request->tahun)->increment('tingkatan');
+
+        return redirect()->route('siswas.index2')
         ->with(['success'=>'Siswa Berhasil Disunting !']);
     }
 

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{{asset('images')}}/Semarang.png">
-    <title>{{ config('SIKESWAN', 'Pesantren') }}</title>
+    <link rel="icon" href="{{asset('images')}}/LOGODA.png">
+    <title>{{ config('SIKESWAN', 'Pesantren Daarul Amanah') }}</title>
 
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -147,6 +147,7 @@
         </main>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
     @stack('modals')
     @stack('scripts')
 
