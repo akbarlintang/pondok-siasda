@@ -10,10 +10,13 @@ class RekapEkstraControllers extends Controller
     public function show($id)
     {
         $siswa = Siswa::where('id',$id)->first();
-        // return $siswa->ekstra_siswas->id;
-        $presensis = PresensiEkstra::where('foreign_ekstrasiswa', $siswa->ekstra_siswas->id)->get();
-        // return $presensis;
-        // $ekstrakurikuler = DB::table('ekstras')->get();
+        
+        if (isset($siswa->ekstra_siswas)) {
+            $presensis = PresensiEkstra::where('foreign_ekstrasiswa', $siswa->ekstra_siswas->id)->get();
+        } else {
+            $presensis = null;
+        }
+        
         return view('rekapekstras.show',compact('siswa', 'presensis'));
     }
 }

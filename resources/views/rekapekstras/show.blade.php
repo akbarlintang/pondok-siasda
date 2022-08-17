@@ -7,14 +7,16 @@
                 $data = [];
                 $count = 0;
             @endphp
-            @foreach ($presensis as $presensi)
-                @php
-                    $data[$count][1] = date('d F Y', strtotime($presensi->tanggal));
-                    $data[$count][2] = $presensi->status;
-                    // $data[$count][3] = $sis->tanggal;
-                    $count++;
-                @endphp
-            @endforeach
+            @isset($presensis)
+                @foreach ($presensis as $presensi)
+                    @php
+                        $data[$count][1] = date('d F Y', strtotime($presensi->tanggal));
+                        $data[$count][2] = $presensi->status;
+                        // $data[$count][3] = $sis->tanggal;
+                        $count++;
+                    @endphp
+                @endforeach
+            @endisset
 
             <body class="flex items-center justify-center">
                 <div class="container block">
