@@ -58,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('rekap-ekstra/show/{id}', 'App\Http\Controllers\RekapEkstraControllers@show')->name('rekap-ekstra.show');
 
+    Route::get('rekap-nilai/index/{id}', 'App\Http\Controllers\RekapNilaiControllers@index')->name('rekap-nilai.index');
+    Route::get('rekap-nilai/show/{id}', 'App\Http\Controllers\RekapNilaiControllers@show')->name('rekap-nilai.show');
+
     Route::get('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@index')->name('user-roles.index');
     Route::post('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@store')->name('user-roles.store');
     Route::get('/permissions/get/{id}', 'App\Http\Controllers\UserRolesControllers@get')->name('user-roles.get');

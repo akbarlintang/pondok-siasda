@@ -68,8 +68,8 @@ class PenilaianControllers extends Controller
     {
         // return $id;
         $siswa = Siswa::where('id',$id)->first();
-        $ganjil = Penilaian::where('siswa_id',$id)->where('semester', 'ganjil')->first();
-        $genap = Penilaian::where('siswa_id',$id)->where('semester', 'genap')->first();
+        $ganjil = Penilaian::where('siswa_id',$id)->where('tingkatan', $siswa->tingkatan)->where('semester', 'ganjil')->first();
+        $genap = Penilaian::where('siswa_id',$id)->where('tingkatan', $siswa->tingkatan)->where('semester', 'genap')->first();
         return view ('penilaians.show',compact('siswa','ganjil','genap'));
     }
 
@@ -112,17 +112,18 @@ class PenilaianControllers extends Controller
     {
         // return 'asd';
         $siswa = Siswa::where('id',$id)->first();
-        $penilaian = Penilaian::where('siswa_id', $id)->where('semester', $semester)->first();
+        $penilaian = Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->first();
         return view('penilaians.edit',compact('penilaian', 'siswa', 'semester'));
     }
 
     public function simpan(Request $request, $id, $semester)
     {
-        $penilaian = Penilaian::where('siswa_id', $id)->where('semester', $semester)->first();
+        $siswa = Siswa::where('id',$id)->first();
+        $penilaian = Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->first();
 
         // Jika data penilaian sudah ada
         if ($penilaian) {
-            Penilaian::where('siswa_id', $id)->where('semester', $semester)->update([
+            Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->update([
                 'tugas_1' => $request->tugas_1,
                 'tugas_2' => $request->tugas_2,
                 'tugas_3' => $request->tugas_3,
@@ -143,10 +144,10 @@ class PenilaianControllers extends Controller
         }
 
         // Hitung dan update nilai akhir
-        $na = Penilaian::where('siswa_id', $id)->where('semester', $semester)->first();
+        $na = Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->first();
         $nilai_akhir = ($na->tugas_1 + $na->tugas_2 + $na->tugas_3 + $na->uts +$na->uas) / 5;
         
-        Penilaian::where('siswa_id', $id)->where('semester', $semester)->update([
+        Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->update([
             'nilai_akhir' => $nilai_akhir,
         ]);
 

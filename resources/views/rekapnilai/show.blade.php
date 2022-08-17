@@ -119,60 +119,6 @@
                                 </tr>
                             @endfor --}}
 
-                            {{-- Baris semester ganjil --}}
-                            <tr
-                                class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
-                                        Ganjil
-                                </td>
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 1</span>
-                                        {{ isset($ganjil->tugas_1) ? $ganjil->tugas_1 : '-' }}
-                                </td>
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 2</span>
-                                        {{ isset($ganjil->tugas_2) ? $ganjil->tugas_2 : '-' }}
-                                </td>
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 3</span>
-                                        {{ isset($ganjil->tugas_3) ? $ganjil->tugas_3 : '-' }}
-                                </td>
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UTS</span>
-                                        {{ isset($ganjil->uts) ? $ganjil->uts : '-' }}
-                                </td>
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UAS</span>
-                                        {{ isset($ganjil->uas) ? $ganjil->uas : '-' }}
-                                </td>
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai Akhir</span>
-                                        {{ isset($ganjil->nilai_akhir) ? $ganjil->nilai_akhir : '-' }}
-                                </td>
-                                <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                    <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                    <a href="{{ route('penilaians.ubah', [$siswa->id, 'ganjil']) }}"
-                                        class="text-blue-400 hover:text-blue-600 underline">Edit</a>
-                                </td>
-                            </tr>
-
                             {{-- Baris semester genap --}}
                             <tr
                                 class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
@@ -223,7 +169,61 @@
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
                                     <a href="{{ route('penilaians.ubah', [$siswa->id, 'genap']) }}"
-                                        class="text-blue-400 hover:text-blue-600 underline">Edit</a>
+                                        class="text-blue-400 hover:text-blue-600 underline pl-6">Edit</a>
+                                </td>
+                            </tr>
+
+                            {{-- Baris semester ganjil --}}
+                            <tr
+                                class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
+                                        Ganjil
+                                </td>
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 1</span>
+                                        {{ isset($ganjil->tugas_1) ? $ganjil->tugas_1 : '-' }}
+                                </td>
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 2</span>
+                                        {{ isset($ganjil->tugas_2) ? $ganjil->tugas_2 : '-' }}
+                                </td>
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 3</span>
+                                        {{ isset($ganjil->tugas_3) ? $ganjil->tugas_3 : '-' }}
+                                </td>
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UTS</span>
+                                        {{ isset($ganjil->uts) ? $ganjil->uts : '-' }}
+                                </td>
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UAS</span>
+                                        {{ isset($ganjil->uas) ? $ganjil->uas : '-' }}
+                                </td>
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai Akhir</span>
+                                        {{ isset($ganjil->nilai_akhir) ? $ganjil->nilai_akhir : '-' }}
+                                </td>
+                                <td
+                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                                    <span
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
+                                    <a href="{{ route('penilaians.ubah', [$siswa->id, 'ganjil']) }}"
+                                        class="text-blue-400 hover:text-blue-600 underline pl-6">Edit</a>
                                 </td>
                             </tr>
                         </tbody>
