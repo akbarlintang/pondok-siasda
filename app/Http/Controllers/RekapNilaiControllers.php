@@ -21,10 +21,10 @@ class RekapNilaiControllers extends Controller
         return view('rekapnilai.index',compact('siswa', 'ganjil', 'genap'));
     }
 
-    public function show($id)
+    public function show($id, $semester, $tingkatan)
     {
         $siswa = Siswa::where('id',$id)->first();
-        
-        return view('rekapnilai.show',compact('siswa'));
+        $nilais = Penilaian::where('siswa_id',$id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->where('tingkatan', $tingkatan)->get();
+        return view('rekapnilai.show',compact('siswa', 'nilais', 'semester', 'tingkatan'));
     }
 }

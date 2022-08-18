@@ -59,10 +59,10 @@
                                         class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                         Nilai Akhir
                                     </th>
-                                    {{-- <th
+                                    <th
                                         class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                         Aksi
-                                    </th> --}}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="flex-1 sm:flex-none">
@@ -111,13 +111,13 @@
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai Akhir</span>
                                                 {{ $nilai->nilai_akhir }}
                                         </td>
-                                        {{-- <td
+                                        <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
                                             <a href="{{ route('penilaians.ubah', [$nilai->id, $semester]) }}"
                                                 class="text-blue-400 hover:text-blue-600 underline">Edit</a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -156,10 +156,10 @@
                 }
 
             </style>
-            {{-- <a href="{{route('penilaians.buat', [$siswa->id, $semester])}}">
+            <a href="{{route('penilaians.buat', [$siswa->id, $semester])}}">
             <button title="Tambah data penilaian"
             class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
-            </a>    --}}
+            </a>   
         </div>
     </div>
 </x-app-layout>

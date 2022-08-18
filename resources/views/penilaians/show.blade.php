@@ -60,7 +60,7 @@
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Semester
                                 </th>
-                                <th
+                                {{-- <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Tugas 1
                                 </th>
@@ -83,7 +83,7 @@
                                 <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Nilai Akhir
-                                </th>
+                                </th> --}}
                                 <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Aksi
@@ -128,7 +128,7 @@
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
                                         Ganjil
                                 </td>
-                                <td
+                                {{-- <td
                                     class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 1</span>
@@ -163,13 +163,13 @@
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai Akhir</span>
                                         {{ isset($ganjil->nilai_akhir) ? $ganjil->nilai_akhir : '-' }}
-                                </td>
+                                </td> --}}
                                 <td
                                     class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                    <a href="{{ route('penilaians.ubah', [$siswa->id, 'ganjil']) }}"
-                                        class="text-blue-400 hover:text-blue-600 underline">Edit</a>
+                                    <a href="{{ route('penilaians.list', [$siswa->id, 'ganjil']) }}"
+                                        class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
                                 </td>
                             </tr>
 
@@ -182,7 +182,7 @@
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
                                         Genap
                                 </td>
-                                <td
+                                {{-- <td
                                     class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 1</span>
@@ -217,13 +217,13 @@
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai Akhir</span>
                                         {{ isset($genap->nilai_akhir) ? $genap->nilai_akhir : '-' }}
-                                </td>
+                                </td> --}}
                                 <td
                                     class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                    <a href="{{ route('penilaians.ubah', [$siswa->id, 'genap']) }}"
-                                        class="text-blue-400 hover:text-blue-600 underline">Edit</a>
+                                    <a href="{{ route('penilaians.list', [$siswa->id, 'genap']) }}"
+                                        class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -257,10 +257,10 @@
                 }
 
             </style>
-            <a href="{{route('siswas.create')}}">
+            {{-- <a href="{{route('siswas.create')}}">
             <button title="Contact Sale"
             class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
-            </a>   
+            </a>    --}}
         </div>
     </div>
 </x-app-layout>

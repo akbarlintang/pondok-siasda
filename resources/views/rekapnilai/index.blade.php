@@ -40,7 +40,7 @@
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Semester
                                 </th>
-                                <th
+                                {{-- <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Tugas 1
                                 </th>
@@ -63,11 +63,11 @@
                                 <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Nilai Akhir
-                                </th>
-                                {{-- <th
+                                </th> --}}
+                                <th
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Aksi
-                                </th> --}}
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="flex-1 sm:flex-none">
@@ -84,7 +84,7 @@
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
                                                 {{ ucwords($semester[0]) }}
                                         </td>
-                                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                        {{-- <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 1</span>
                                                 @if ($ganjil->where('tingkatan', $tingkat)->first() != null)
@@ -137,13 +137,13 @@
                                                 @else
                                                     -
                                                 @endif
-                                        </td>
-                                        {{-- <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                                        </td> --}}
+                                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                            <a href="{{ route('penilaians.ubah', [$siswa->id, 'genap']) }}"
+                                            <a href="{{ route('rekap-nilai.show', [$siswa->id, 'ganjil', $tingkat]) }}"
                                                 class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                     <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                                         <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
@@ -151,7 +151,7 @@
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
                                                 {{ ucwords($semester[1]) }}
                                         </td>
-                                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                        {{-- <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 1</span>
                                                 @if ($genap->where('tingkatan', $tingkat)->first() != null)
@@ -204,13 +204,13 @@
                                                 @else
                                                     -
                                                 @endif
-                                        </td>
-                                        {{-- <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                                        </td> --}}
+                                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                            <a href="{{ route('rekapnilai.ubah', [$siswa->id, 'genap']) }}"
+                                            <a href="{{ route('rekap-nilai.show', [$siswa->id, 'genap', $tingkat]) }}"
                                                 class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                 {{-- @endforeach --}}
                             @endforeach
@@ -299,10 +299,10 @@
                 }
 
             </style>
-            <a href="{{route('siswas.create')}}">
+            {{-- <a href="{{route('siswas.create')}}">
             <button title="Contact Sale"
             class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
-            </a>   
+            </a>    --}}
         </div>
     </div>
 </x-app-layout>

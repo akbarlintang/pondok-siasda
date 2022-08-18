@@ -8,6 +8,7 @@ use App\Http\Controllers\EkstraSiswaControllers;
 use App\Http\Controllers\PresensiEkstraControllers;
 use App\Http\Controllers\GuruControllers;
 use App\Http\Controllers\PenilaianControllers;
+use App\Http\Controllers\MataPelajaranControllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,14 +53,19 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('gurus',GuruControllers::class);
     Route::get('gurus/delete/{id}', 'App\Http\Controllers\GuruControllers@delete')->name('gurus.delete');
 
+    Route::resource('mapels',MataPelajaranControllers::class);
+
     Route::resource('penilaians',PenilaianControllers::class);
+    Route::get('penilaians/list/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@list')->name('penilaians.list');
+    Route::get('penilaians/buat/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@buat')->name('penilaians.buat');
+    Route::post('penilaians/tambah/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@tambah')->name('penilaians.tambah');
     Route::get('penilaians/ubah/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@ubah')->name('penilaians.ubah');
     Route::patch('penilaians/simpan/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@simpan')->name('penilaians.simpan');
 
     Route::get('rekap-ekstra/show/{id}', 'App\Http\Controllers\RekapEkstraControllers@show')->name('rekap-ekstra.show');
 
     Route::get('rekap-nilai/index/{id}', 'App\Http\Controllers\RekapNilaiControllers@index')->name('rekap-nilai.index');
-    Route::get('rekap-nilai/show/{id}', 'App\Http\Controllers\RekapNilaiControllers@show')->name('rekap-nilai.show');
+    Route::get('rekap-nilai/show/{id}/{semester}/{tingkat}', 'App\Http\Controllers\RekapNilaiControllers@show')->name('rekap-nilai.show');
 
     Route::get('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@index')->name('user-roles.index');
     Route::post('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@store')->name('user-roles.store');

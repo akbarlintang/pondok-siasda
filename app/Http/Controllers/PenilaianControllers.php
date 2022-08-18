@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Siswa, Penilaian};
+use App\Models\{Siswa, Penilaian, MataPelajaran};
 use Illuminate\Http\Request;
 
 class PenilaianControllers extends Controller
@@ -44,7 +44,9 @@ class PenilaianControllers extends Controller
      */
     public function create()
     {
-        //
+        $siswa = Siswa::where('id',$id)->first();
+        $penilaian = Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->first();
+        return view('penilaians.create',compact('penilaian', 'siswa', 'semester'));
     }
 
     /**
@@ -107,51 +109,73 @@ class PenilaianControllers extends Controller
     {
         //
     }
-
-    public function ubah($id, $semester)
+    
+    public function list($id, $semester)
     {
-        // return 'asd';
         $siswa = Siswa::where('id',$id)->first();
-        $penilaian = Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->first();
-        return view('penilaians.edit',compact('penilaian', 'siswa', 'semester'));
+        $nilais = Penilaian::where('siswa_id',$id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->get();
+        return view ('penilaians.list',compact('siswa', 'nilais', 'semester'));
     }
 
-    public function simpan(Request $request, $id, $semester)
+    public function buat($id, $semester)
     {
         $siswa = Siswa::where('id',$id)->first();
-        $penilaian = Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->first();
+        $mapels = MataPelajaran::get();
+        return view('penilaians.create',compact('siswa', 'semester', 'mapels'));
+    }
 
-        // Jika data penilaian sudah ada
-        if ($penilaian) {
-            Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->update([
-                'tugas_1' => $request->tugas_1,
-                'tugas_2' => $request->tugas_2,
-                'tugas_3' => $request->tugas_3,
-                'uts' => $request->uts,
-                'uas' => $request->uas,
-            ]);
+    public function tambah(Request $request, $id, $semester)
+    {
+        // Hitung nilai akhir
+        $nilai_akhir = ($request->tugas_1 + $request->tugas_2 + $request->tugas_3 + $request->uts +$request->uas) / 5;
+
+        $penilaian = Penilaian::where('siswa_id', $id)->where('tingkatan', $request->tingkatan)->where('semester', $semester)->where('mapel', $request->mapel)->first();
+
+        if (isset($penilaian)) {
+            return redirect()->route('penilaians.list', [$id, $semester])
+            ->with(['failed'=>'Nilai Siswa Dengan Mata Pelajaran '.$request->mapel.' Sudah Ada !']);
         } else {
             Penilaian::create([
                 'siswa_id' => $id,
                 'tingkatan' => $request->tingkatan,
                 'semester' => $semester,
+                'mapel' => $request->mapel,
                 'tugas_1' => $request->tugas_1,
                 'tugas_2' => $request->tugas_2,
                 'tugas_3' => $request->tugas_3,
                 'uts' => $request->uts,
                 'uas' => $request->uas,
+                'nilai_akhir' => $nilai_akhir
             ]);
+    
+            return redirect()->route('penilaians.list', [$id, $semester])
+            ->with(['success'=>'Nilai Siswa Berhasil Ditambahkan !']);
         }
+    }
 
-        // Hitung dan update nilai akhir
-        $na = Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->first();
-        $nilai_akhir = ($na->tugas_1 + $na->tugas_2 + $na->tugas_3 + $na->uts +$na->uas) / 5;
-        
-        Penilaian::where('siswa_id', $id)->where('tingkatan', $siswa->tingkatan)->where('semester', $semester)->update([
-            'nilai_akhir' => $nilai_akhir,
+    public function ubah($id, $semester)
+    {
+        $penilaian = Penilaian::whereId($id)->first();
+        $mapels = MataPelajaran::get();
+        return view('penilaians.edit',compact('penilaian', 'semester', 'mapels'));
+    }
+
+    public function simpan(Request $request, $id, $semester)
+    {
+        $penilaian = Penilaian::whereId($id)->first();
+        // Hitung nilai akhir
+        $nilai_akhir = ($request->tugas_1 + $request->tugas_2 + $request->tugas_3 + $request->uts +$request->uas) / 5;
+
+        Penilaian::whereId($id)->update([
+            'tugas_1' => $request->tugas_1,
+            'tugas_2' => $request->tugas_2,
+            'tugas_3' => $request->tugas_3,
+            'uts' => $request->uts,
+            'uas' => $request->uas,
+            'nilai_akhir' => $nilai_akhir
         ]);
 
-        return redirect()->route('penilaians.show', $id)
+        return redirect()->route('penilaians.list', [$penilaian->siswa_id, $semester])
         ->with(['success'=>'Nilai Siswa Berhasil Disunting !']);
     }
 }
