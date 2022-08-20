@@ -74,7 +74,7 @@
                         <label class="block text-sm mt-2">
                             <span class="text-gray-700 dark:text-gray-400">Ekstra</span>
                             <br>
-                            <select name="ekstra">
+                            <select class="border-black block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md" name="ekstra">
                                 <option value="" selected disabled hidden>-- Pilih Ekstra --</option>
                                 @foreach ($ekstrakurikuler as $ekstra)
                                     <option class="border-black rounded-md form-select" value="{{$ekstra->id}}" {{ $siswas->ekstra_siswas == null ? '' : ($siswas->ekstra_siswas->foreign_ekstra == $ekstra->id ? 'selected' : '') }}>{{$ekstra->nama}}</option>

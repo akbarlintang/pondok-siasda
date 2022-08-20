@@ -9,6 +9,7 @@ use App\Http\Controllers\PresensiEkstraControllers;
 use App\Http\Controllers\GuruControllers;
 use App\Http\Controllers\PenilaianControllers;
 use App\Http\Controllers\MataPelajaranControllers;
+use App\Http\Controllers\PresensiKbmControllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +62,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('penilaians/tambah/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@tambah')->name('penilaians.tambah');
     Route::get('penilaians/ubah/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@ubah')->name('penilaians.ubah');
     Route::patch('penilaians/simpan/{id}/{semester}', 'App\Http\Controllers\PenilaianControllers@simpan')->name('penilaians.simpan');
+
+    Route::resource('presensikbms',PresensiKbmControllers::class);
+    Route::get('presensikbms/list/guru', 'App\Http\Controllers\PresensiKbmControllers@list')->name('presensikbms.list');
+    Route::get('presensikbms/list/guru/{id}', 'App\Http\Controllers\PresensiKbmControllers@listGuru')->name('presensikbms.list-guru');
+    Route::get('presensikbms/list/semester/{jenjang}-{tingkat}{kelas}/{mapel}', 'App\Http\Controllers\PresensiKbmControllers@semester')->name('presensikbms.semester');
+    Route::get('presensikbms/list/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}', 'App\Http\Controllers\PresensiKbmControllers@tanggal')->name('presensikbms.tanggal');
+    Route::get('presensikbms/buat/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}', 'App\Http\Controllers\PresensiKbmControllers@buat')->name('presensikbms.buat');
+    Route::post('presensikbms/buat/tanggal', 'App\Http\Controllers\PresensiKbmControllers@tambah')->name('presensikbms.tambah');
+    Route::get('presensikbms/input/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{tanggal}', 'App\Http\Controllers\PresensiKbmControllers@input')->name('presensikbms.input');
+    Route::post('presensikbms/updateAll', 'App\Http\Controllers\PresensiKbmControllers@updateAll')->name('presensikbms.update-all');
+
+    Route::get('rekap-kbm/{id}', 'App\Http\Controllers\RekapKbmControllers@index')->name('rekap-kbm.index');
+    Route::get('rekap-kbm/{semester}/{tingkat}', 'App\Http\Controllers\RekapKbmControllers@show')->name('rekap-kbm.show');
+    Route::get('rekap-kbm/{semester}/{tingkat}/{mapel}', 'App\Http\Controllers\RekapKbmControllers@rekap')->name('rekap-kbm.rekap');
 
     Route::get('rekap-ekstra/show/{id}', 'App\Http\Controllers\RekapEkstraControllers@show')->name('rekap-ekstra.show');
 

@@ -96,6 +96,18 @@
                                 </div>
                             </div>
                         </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Mata Pelajaran</span>
+                            <div class="flex flex-col mb-4">
+                                @foreach ($mapels as $mapel)
+                                    <div class="mt-2">
+                                        <input id="default-checkbox" type="checkbox" value="{{ $mapel->nama }}" name="mapel[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ isset($guru->mapel) ? (in_array($mapel->nama, $guru->mapel) ? 'checked' : '') : '' }}>
+                                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $mapel->nama }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </label>
                         
                         <label class="block text-sm mt-2">
                             <span class="text-gray-700 dark:text-gray-400">Tempat Lahir</span>
@@ -123,7 +135,7 @@
                         
                         <div class="mt-5">
                             <button type="submit"
-                            class="bg-blue-500 text-white py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Daftar</button>
+                            class="bg-blue-500 text-white py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Simpan</button>
                         </div>
                     </form>
                 </div>

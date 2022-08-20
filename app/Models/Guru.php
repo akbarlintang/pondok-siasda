@@ -15,6 +15,7 @@ class Guru extends Model
         'jenjang',
         'tingkatan',
         'kelas',
+        'mapel',
         'tempat_lahir',
         'tanggal_lahir',
         'tahun_masuk',

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Guru, User, Role};
+use App\Models\{Guru, User, Role, MataPelajaran};
 use Illuminate\Support\Facades\Hash;
 
 class GuruControllers extends Controller
@@ -27,7 +27,8 @@ class GuruControllers extends Controller
      */
     public function create()
     {
-        return view('gurus.create');
+        $mapels = MataPelajaran::get();
+        return view('gurus.create', compact('mapels'));
     }
 
     /**
@@ -56,6 +57,7 @@ class GuruControllers extends Controller
             'jenjang'       =>   $request->jenjang,
             'tingkatan'       =>   $request->tingkatan,
             'kelas'       =>   json_encode($request->kelas),
+            'mapel'       =>   json_encode($request->mapel),
             'tempat_lahir'       =>   $request->tempat_lahir,
             'tanggal_lahir'       =>   $request->tanggal_lahir,
             'tahun_masuk' => $request->tahun_masuk,
@@ -88,7 +90,9 @@ class GuruControllers extends Controller
     public function edit(Guru $guru)
     {
         $guru->kelas = json_decode($guru->kelas);
-        return view('gurus.edit',compact('guru'));
+        $guru->mapel = json_decode($guru->mapel);
+        $mapels = MataPelajaran::get();
+        return view('gurus.edit',compact('guru', 'mapels'));
     }
 
     /**
@@ -106,6 +110,7 @@ class GuruControllers extends Controller
             'jenjang'       =>   $request->jenjang,
             'tingkatan'       =>   $request->tingkatan,
             'kelas'       =>   json_encode($request->kelas),
+            'mapel'       =>   json_encode($request->mapel),
             'tempat_lahir'       =>   $request->tempat_lahir,
             'tanggal_lahir'       =>   $request->tanggal_lahir,
             'tahun_masuk' => $request->tahun_masuk,
