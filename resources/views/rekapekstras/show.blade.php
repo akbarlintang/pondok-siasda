@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan Siswa {{$siswa->nama_siswa}} {{strtoupper($siswa->jenjang)}} Tingkat {{$siswa->tingkatan}} Kelas {{$siswa->kelas}}</p>
             <!-- component -->

@@ -14,6 +14,7 @@
             </h2>
         </x-slot>
     @endif
+    <div class="p-6">
     <form action="{{route('spps.index')}}" method="get" enctype="multipart/form-data">
         @csrf
         <div class="grid grid grid-cols-4">        
@@ -204,5 +205,6 @@
 
             </style>
         </div>
+    </div>
     </div>
 </x-app-layout>
