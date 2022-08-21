@@ -15,6 +15,7 @@
         </x-slot>
     @endif
 
+    <div class="p-6">
     <form action="{{route('presensiekstras.index')}}" method="get">
         @csrf
         <div class="mx-auto sm:px-6 lg:px-8 ">
@@ -133,5 +134,6 @@
 
             </style>
         </div>
+    </div>
     </div>
 </x-app-layout>

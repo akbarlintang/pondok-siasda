@@ -57,6 +57,9 @@
                                 <option value="C" @if($siswa->kelas == 'C') selected @endif>C</option>
                                 <option value="D" @if($siswa->kelas == 'D') selected @endif>D</option>
                                 <option value="E" @if($siswa->kelas == 'E') selected @endif>E</option>
+                                <option value="F" @if($siswa->kelas == 'F') selected @endif>F</option>
+                                <option value="G" @if($siswa->kelas == 'G') selected @endif>G</option>
+                                <option value="H" @if($siswa->kelas == 'H') selected @endif>H</option>
                             </select>
                         </label>
                         

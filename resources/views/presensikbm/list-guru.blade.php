@@ -15,10 +15,18 @@
         </x-slot>
     @endif
 
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <p>Menampilkan data kelas</p>
+            <p>Menampilkan data kelas yang diampu {{ $guru->nama }}</p>
             <!-- component -->
+
+            <a href="{{ route('presensikbms.list')}}">
+                <button
+                    class="mb-3 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple float-right">
+                    Kembali
+                </button>
+            </a>
+
             @php
                 $data = [];
                 $count = 0;
@@ -53,20 +61,20 @@
                                             <td
                                                 class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                                 <span
-                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
+                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Kelas</span>
                                                     {{ $guru->tingkatan . $kelas }}
                                             </td>
                                             <td
                                                 class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                                 <span
-                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
+                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Mata Pelajaran</span>
                                                     {{ $mapel }}
                                             </td>
                                             <td
                                                 class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                                 <span
                                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                                <a href="{{ route('presensikbms.semester', [$guru->jenjang, $guru->tingkatan, $kelas, $mapel]) }}"
+                                                <a href="{{ route('presensikbms.semester', [$guru->jenjang, $guru->tingkatan, $kelas, $mapel, $guru->id]) }}"
                                                     class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
                                             </td>
                                         </tr>

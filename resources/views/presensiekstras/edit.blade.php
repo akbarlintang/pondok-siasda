@@ -15,7 +15,7 @@
         </x-slot>
     @endif
 
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan Ekstrakurikuler <a class="font-bold">{{strtoupper($tes->nama)}}</a> Tanggal <a class="font-bold">{{ \Carbon\Carbon::parse($absen[0]->tanggal)->translatedFormat('d F Y') }}</a></p>
             <!-- component -->
@@ -31,6 +31,12 @@
                 <button class="float-right py-2 px-4 bg-transparent text-blue-600 font-semibold border border-blue-600 rounded hover:bg-blue-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" 
                         >Hadir Semua</button>
             </form>
+            <a href="{{ url()->previous() }}">
+                <button
+                    class="float-right py-2 px-4 mr-2 bg-transparent text-blue-600 font-semibold border border-blue-600 rounded hover:bg-blue-600 hover:text-white hover:border-transparent transition ease-in duration-200">
+                    Kembali
+                </button>
+            </a>
             <body class="flex items-center justify-center">
                 <div class="container block">
                     <table

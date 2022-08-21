@@ -56,7 +56,7 @@
             </div>
         </div>
     </form> --}}
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan Seluruh Data Guru</p>
             <!-- component -->
@@ -114,25 +114,25 @@
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tanggal</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
                                             {{ $data[$i][1] }}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">NIK</span>
                                             {{ $data[$i][2] }}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">TTL</span>
                                             {{ $data[$i][3] }}, <br> {{ \Carbon\Carbon::parse($data[$i][0])->format('d M Y') }}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nama</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tahun Masuk</span>
                                             {{ $data[$i][4] }}
                                     </td>
                                     <td

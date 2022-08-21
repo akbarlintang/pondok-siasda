@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="py-2">
+    <div class="p-6">
         <div class="max-w-7xl mb-2 mx-auto sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-700">
             <main class="h-full pb-16 overflow-y-auto">
                 <a href="{{ route('siswas.index')}}">
@@ -70,6 +70,9 @@
                                 <option value="C">C</option>
                                 <option value="D">D</option>
                                 <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="G">G</option>
+                                <option value="H">H</option>
                             </select>
                         </label>
                         

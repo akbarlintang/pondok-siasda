@@ -14,6 +14,7 @@
             </h2>
         </x-slot>
     @endif
+    <div class="p-6">
     <form action="{{route('spps.index')}}" method="get" enctype="multipart/form-data">
         @csrf
         <div class="grid grid grid-cols-4">        
@@ -46,6 +47,9 @@
                     <option class="border-black bg-white text-black" value="C" {{ $kelas == 'C' ? 'selected' : '' }}>C</option>
                     <option class="border-black bg-white text-black" value="D" {{ $kelas == 'D' ? 'selected' : '' }}>D</option>
                     <option class="border-black bg-white text-black" value="E" {{ $kelas == 'E' ? 'selected' : '' }}>E</option>
+                    <option class="border-black bg-white text-black" value="F" {{ $kelas == 'F' ? 'selected' : '' }}>F</option>
+                    <option class="border-black bg-white text-black" value="G" {{ $kelas == 'G' ? 'selected' : '' }}>G</option>
+                    <option class="border-black bg-white text-black" value="H" {{ $kelas == 'H' ? 'selected' : '' }}>H</option>
                 </select>
             </div>
 
@@ -153,13 +157,13 @@
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Hapalan Terakhir</span>
+                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status Pembayaran</span>
                                         {{ strtoupper($data[$i][5]) }}
                                     </td>
                                     <td
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span
-                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tanggal</span>
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Bulan Pembayaran Terakhir</span>
                                         {{$data[$i][6]}}
                                     </td>
                                     <td
@@ -204,5 +208,6 @@
 
             </style>
         </div>
+    </div>
     </div>
 </x-app-layout>

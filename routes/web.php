@@ -42,6 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/siswas/index', 'App\Http\Controllers\SiswaControllers@index2')->name('siswas.index2');
     Route::post('/siswas/add', 'App\Http\Controllers\SiswaControllers@add')->name('siswas.add');
+    Route::get('/siswas/hapus/{id}', 'App\Http\Controllers\SiswaControllers@hapus')->name('siswas.hapus');
     Route::post('/presensiekstras/updateAll', 'App\Http\Controllers\PresensiEkstraControllers@updateAll')->name('presensiekstras.updateAll');
     Route::resource('siswas',SiswaControllers::class);
     Route::resource('hapalans',HapalanControllers::class);
@@ -66,8 +67,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('presensikbms',PresensiKbmControllers::class);
     Route::get('presensikbms/list/guru', 'App\Http\Controllers\PresensiKbmControllers@list')->name('presensikbms.list');
     Route::get('presensikbms/list/guru/{id}', 'App\Http\Controllers\PresensiKbmControllers@listGuru')->name('presensikbms.list-guru');
-    Route::get('presensikbms/list/semester/{jenjang}-{tingkat}{kelas}/{mapel}', 'App\Http\Controllers\PresensiKbmControllers@semester')->name('presensikbms.semester');
-    Route::get('presensikbms/list/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}', 'App\Http\Controllers\PresensiKbmControllers@tanggal')->name('presensikbms.tanggal');
+    Route::get('presensikbms/list/semester/{jenjang}-{tingkat}{kelas}/{mapel}/{guru}', 'App\Http\Controllers\PresensiKbmControllers@semester')->name('presensikbms.semester');
+    Route::get('presensikbms/list/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}/{guru}', 'App\Http\Controllers\PresensiKbmControllers@tanggal')->name('presensikbms.tanggal');
     Route::get('presensikbms/buat/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}', 'App\Http\Controllers\PresensiKbmControllers@buat')->name('presensikbms.buat');
     Route::post('presensikbms/buat/tanggal', 'App\Http\Controllers\PresensiKbmControllers@tambah')->name('presensikbms.tambah');
     Route::get('presensikbms/input/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{tanggal}', 'App\Http\Controllers\PresensiKbmControllers@input')->name('presensikbms.input');

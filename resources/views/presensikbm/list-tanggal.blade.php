@@ -15,10 +15,18 @@
         </x-slot>
     @endif
 
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan data presensi kelas {{ $tingkatan }}{{ $kelas }} untuk mata pelajaran {{ $mapel->nama }}</p>
             <!-- component -->
+
+            <a href="{{ route('presensikbms.semester', [$jenjang, $tingkatan, $kelas, $mapel->nama, $guru_id]) }}" class="right-0">
+                <button
+                    class="mb-3 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple float-right">
+                    Kembali
+                </button>
+            </a>
+
             @php
                 $data = [];
                 $count = 0;
@@ -63,7 +71,7 @@
                             </tbody>
                         </table>
                     @else
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-3 rounded relative" role="alert">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-16 rounded relative" role="alert">
                             <strong class="font-bold">Data presensi kelas masih kosong!</strong>
                         </div>
                     @endif

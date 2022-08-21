@@ -1,8 +1,16 @@
 <x-app-layout>
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan Siswa {{$siswa->nama_siswa}} {{strtoupper($siswa->jenjang)}} Tingkat {{$siswa->tingkatan}} Kelas {{$siswa->kelas}}</p>
             <!-- component -->
+
+            <a href="{{ url()->previous() }}" class="right-0">
+                <button
+                    class="mb-3 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple float-right">
+                    Kembali
+                </button>
+            </a>
+
             @php
                 $data = [];
                 $count = 0;
@@ -19,7 +27,7 @@
             <body class="flex items-center justify-center">
                 <div class="container block">
                     @if ($count <= 0)
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-3 rounded relative" role="alert">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-16 rounded relative" role="alert">
                             <strong class="font-bold">Siswa belum memiliki data hapalan!</strong>
                         </div>
                     @else

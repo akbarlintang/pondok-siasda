@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="py-2">
+    <div class="p-6">
         <div class="max-w-7xl mb-2 mx-auto sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-700">
             <main class="h-full pb-16 overflow-y-auto">
                 <a href="{{ route('presensikbms.tanggal', [$jenjang, $tingkatan, $kelas, $mapel, $semester])}}">

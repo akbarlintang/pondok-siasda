@@ -14,7 +14,7 @@
             </h2>
         </x-slot>
     @endif
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan Daftar Mata Pelajaran</p>
             <!-- component -->

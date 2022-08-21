@@ -15,10 +15,18 @@
         </x-slot>
     @endif
 
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan data nilai siswa {{ $siswa->nama_siswa }}</p>
             <!-- component -->
+
+            <a href="{{ route('penilaians.index') }}" class="right-0">
+                <button
+                    class="mb-3 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple float-right">
+                    Kembali
+                </button>
+            </a>
+
             @php
                 $data = [];
                 $count = 0;

@@ -101,17 +101,18 @@ class PresensiKbmControllers extends Controller
         return view ('presensikbm.list-guru',compact('guru'));
     }
 
-    public function semester($jenjang, $tingkatan, $kelas, $mapel_nm)
+    public function semester($jenjang, $tingkatan, $kelas, $mapel_nm, $guru_id)
     {
+        $guru =  Guru::find($guru_id);
         $mapel = MataPelajaran::where('nama', $mapel_nm)->first();
-        return view ('presensikbm.list-semester',compact('jenjang', 'tingkatan', 'kelas', 'mapel'));
+        return view ('presensikbm.list-semester',compact('jenjang', 'tingkatan', 'kelas', 'mapel', 'guru'));
     }
 
-    public function tanggal($jenjang, $tingkatan, $kelas, $mapel_nm, $semester)
+    public function tanggal($jenjang, $tingkatan, $kelas, $mapel_nm, $semester, $guru_id)
     {
         $mapel = MataPelajaran::where('nama', $mapel_nm)->first();
-        $presensis = PresensiKbm::select('tanggal')->where('mapel_id', $mapel->id)->distinct()->get();
-        return view ('presensikbm.list-tanggal',compact('presensis', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'semester'));
+        $presensis = PresensiKbm::select('tanggal')->where('mapel_id', $mapel->id)->where('semester', $semester)->distinct()->get();
+        return view ('presensikbm.list-tanggal',compact('presensis', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'semester', 'guru_id'));
     }
 
     public function buat($jenjang, $tingkatan, $kelas, $mapel, $semester)

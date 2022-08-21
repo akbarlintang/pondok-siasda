@@ -15,10 +15,18 @@
         </x-slot>
     @endif
 
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan data nilai siswa {{ $siswa->nama_siswa }} untuk Tingkatan {{ $siswa->tingkatan }} Semester {{ ucwords($semester) }}</p>
             <!-- component -->
+
+            <a href="{{ url()->previous() }}" class="right-0">
+                <button
+                    class="mb-3 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple float-right">
+                    Kembali
+                </button>
+            </a>
+
             @php
                 $data = [];
                 $count = 0;
@@ -72,44 +80,44 @@
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
-                                                class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Semester</span>
+                                                class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Mapel</span>
                                                 {{ $nilai->mapel }}
                                         </td>
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 1</span>
-                                                {{ $nilai->tugas_1 }}
+                                                {{ $nilai->tugas_1 == null ? '-' : $nilai->tugas_1 }}
                                         </td>
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 2</span>
-                                                {{ $nilai->tugas_2 }}
+                                                {{ $nilai->tugas_2 == null ? '-' : $nilai->tugas_2 }}
                                         </td>
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Tugas 3</span>
-                                                {{ $nilai->tugas_3 }}
+                                                {{ $nilai->tugas_3 == null ? '-' : $nilai->tugas_3 }}
                                         </td>
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UTS</span>
-                                                {{ $nilai->uts }}
+                                                {{ $nilai->uts == null ? '-' : $nilai->uts }}
                                         </td>
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UAS</span>
-                                                {{ $nilai->uas }}
+                                                {{ $nilai->uas == null ? '-' : $nilai->uas }}
                                         </td>
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai Akhir</span>
-                                                {{ $nilai->nilai_akhir }}
+                                                {{ $nilai->nilai_akhir == null ? '-' : $nilai->nilai_akhir }}
                                         </td>
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
@@ -123,7 +131,7 @@
                             </tbody>
                         </table>
                     @else
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-3 rounded relative" role="alert">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-16 rounded relative" role="alert">
                             <strong class="font-bold">Data nilai siswa masih kosong!</strong>
                         </div>
                     @endif
