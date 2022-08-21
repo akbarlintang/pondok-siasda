@@ -15,7 +15,7 @@
         </x-slot>
     @endif
 
-    <div class="py-6">
+    <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <p>Menampilkan data nilai siswa {{ $siswa->nama_siswa }} untuk Tingkatan {{ $siswa->tingkatan }} Semester {{ ucwords($semester) }}</p>
             <!-- component -->
