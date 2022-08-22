@@ -15,21 +15,36 @@ class EvaluasiControllers extends Controller
      */
     public function index(Request $request ,Siswa $siswas)
     {
-        if (is_null($request->tingkatan)) {
+        // Cek tingkatan
+        if ($request->tingkatan) {
+            $request->session()->put('tingkat', $request->tingkatan);
+            $tingkat = $request->session()->get('tingkat');
+        } elseif ($request->session()->has('tingkat')) {
+            $tingkat = $request->session()->get('tingkat');
+        } else {
             $tingkat = '1';
-        } else {
-            $tingkat = $request->tingkatan;
         }
-        if (is_null($request->kelas)) {
+
+        // Cek kelas
+        if ($request->kelas) {
+            $request->session()->put('kelas', $request->kelas);
+            $kelas = $request->session()->get('kelas');
+        } elseif ($request->session()->has('kelas')) {
+            $kelas = $request->session()->get('kelas');
+        } else {
             $kelas = 'A';
-        } else {
-            $kelas = $request->kelas;
         }
-        if (is_null($request->jenjang)) {
+
+        // Cek jenjang
+        if ($request->jenjang) {
+            $request->session()->put('jenjang', $request->jenjang);
+            $jenjang = $request->session()->get('jenjang');
+        } elseif($request->session()->has('jenjang')) {
+            $jenjang = $request->session()->get('jenjang');
+        } else {
             $jenjang = 'smk';
-        } else {
-            $jenjang = $request->jenjang;
         }
+        
         // dd($tingkat,$kelas,$jenjang);
         $siswas = Siswa::with('evaluasis')
         ->where('tingkatan',$tingkat)

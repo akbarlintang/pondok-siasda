@@ -86,6 +86,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@index')->name('user-roles.index');
     Route::post('/permissions/user-roles', 'App\Http\Controllers\UserRolesControllers@store')->name('user-roles.store');
     Route::get('/permissions/get/{id}', 'App\Http\Controllers\UserRolesControllers@get')->name('user-roles.get');
+
+    Route::get('pengumuman', 'App\Http\Controllers\PengumumanControllers@index')->name('pengumuman.index');
+    Route::get('pengumuman/create', 'App\Http\Controllers\PengumumanControllers@create')->name('pengumuman.create');
+    Route::post('pengumuman/store', 'App\Http\Controllers\PengumumanControllers@store')->name('pengumuman.store');
 });
 
 Route::get('/profil', function () {
