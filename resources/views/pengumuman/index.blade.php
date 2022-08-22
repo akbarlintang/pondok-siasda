@@ -70,10 +70,12 @@
                 </div>
             </body>
 
+            @role('Admin')
             <a href="{{route('pengumuman.create')}}">
                 <button title="Buat Pengumuman"
                 class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
             </a>
+            @endrole
 
             <style>
                 html,
