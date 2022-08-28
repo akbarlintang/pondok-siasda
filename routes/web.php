@@ -90,6 +90,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('pengumuman', 'App\Http\Controllers\PengumumanControllers@index')->name('pengumuman.index');
     Route::get('pengumuman/create', 'App\Http\Controllers\PengumumanControllers@create')->name('pengumuman.create');
     Route::post('pengumuman/store', 'App\Http\Controllers\PengumumanControllers@store')->name('pengumuman.store');
+    Route::get('pengumuman/download/{file}', 'App\Http\Controllers\PengumumanControllers@download')->name('pengumuman.download');
+
+    Route::get('kotak-saran', 'App\Http\Controllers\KotakSaranControllers@index')->name('kotak-saran.index');
+    Route::get('kotak-saran/create', 'App\Http\Controllers\KotakSaranControllers@create')->name('kotak-saran.create');
+    Route::post('kotak-saran/store', 'App\Http\Controllers\KotakSaranControllers@store')->name('kotak-saran.store');
+    Route::get('kotak-saran/balas/{id}', 'App\Http\Controllers\KotakSaranControllers@balas')->name('kotak-saran.balas');
+    Route::post('kotak-saran/kirim', 'App\Http\Controllers\KotakSaranControllers@kirim')->name('kotak-saran.kirim');
+
+    Route::get('/siswa/cetak/{id}', 'App\Http\Controllers\SiswaControllers@cetak')->name('siswa.cetak');
 });
 
 Route::get('/profil', function () {

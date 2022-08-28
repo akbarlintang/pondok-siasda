@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\{Siswa, User, Role};
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class SiswaControllers extends Controller
 {
@@ -83,6 +84,14 @@ class SiswaControllers extends Controller
         // Beri role user untuk user yang baru dibuat
         $user->assignRole('Siswa');
 
+        if ($request->file) {
+            $file = $request->file;
+            $fileName = $file->hashname();
+            $file->storeAs('public/foto', $fileName);
+        } else {
+            $fileName = null;
+        }
+
         $form_data = array(
             'nama_siswa'       =>   $request->nama_siswa,
             'nis'       =>   $request->nis,
@@ -91,9 +100,20 @@ class SiswaControllers extends Controller
             'kelas'       =>   $request->kelas,
             'tempat_lahir'       =>   $request->tempat_lahir,
             'tanggal_lahir'       =>   $request->tanggal_lahir,
+            'alamat'       =>   $request->alamat,
+            'jenis_kelamin'       =>   $request->jenis_kelamin,
+            'agama'       =>   $request->agama,
             'tahun_masuk' => $request->tahun_masuk,
             'wali_kamar'       =>   $request->wali_kamar,
             'nomor_wali'       =>   $request->nomor_wali,
+            'asal_sekolah'       =>   $request->asal_sekolah,
+            'alamat_asal_sekolah'       =>   $request->alamat_asal_sekolah,
+            'tahun_lulus'       =>   $request->tahun_lulus,
+            'no_surat_lulus'       =>   $request->no_surat_lulus,
+            'nama_ayah'       =>   $request->nama_ayah,
+            'nama_ibu'       =>   $request->nama_ibu,
+            'email_ortu'       =>   $request->email_siswa,
+            'foto'          => $fileName,
             'user_id' => $user->id,
         );
 
@@ -138,6 +158,14 @@ class SiswaControllers extends Controller
      */
     public function update(Request $request, Siswa $siswa)
     {
+        if ($request->file) {
+            $file = $request->file;
+            $fileName = $file->hashname();
+            $file->storeAs('public/foto', $fileName);
+        } else {
+            $fileName = null;
+        }
+
         Siswa::where('id',$siswa->id)->update([
             'nama_siswa'       =>   $request->nama_siswa,
             'nis'       =>   $request->nis,
@@ -146,9 +174,19 @@ class SiswaControllers extends Controller
             'kelas'       =>   $request->kelas,
             'tempat_lahir'       =>   $request->tempat_lahir,
             'tanggal_lahir'       =>   $request->tanggal_lahir,
+            'alamat'       =>   $request->alamat,
+            'jenis_kelamin'       =>   $request->jenis_kelamin,
+            'agama'       =>   $request->agama,
             'tahun_masuk' => $request->tahun_masuk,
             'wali_kamar'       =>   $request->wali_kamar,
             'nomor_wali'       =>   $request->nomor_wali,
+            'asal_sekolah'       =>   $request->asal_sekolah,
+            'alamat_asal_sekolah'       =>   $request->alamat_asal_sekolah,
+            'tahun_lulus'       =>   $request->tahun_lulus,
+            'no_surat_lulus'       =>   $request->no_surat_lulus,
+            'nama_ayah'       =>   $request->nama_ayah,
+            'nama_ibu'       =>   $request->nama_ibu,
+            'foto'          => $fileName
         ]);
 
         return redirect()->route('siswas.index')
@@ -186,5 +224,12 @@ class SiswaControllers extends Controller
 
         return redirect()->route('siswas.index')
         ->with(['success'=>'Siswa Berhasil Dihapus !']);
+    }
+
+    public function cetak($id){
+        $siswa = Siswa::whereId($id)->first();
+
+        $pdf = PDF::loadview('siswas.pdf', compact('siswa'))->setPaper('A4','portrait');
+        return $pdf->stream("biodata_".$siswa->nama_siswa.".pdf");
     }
 }

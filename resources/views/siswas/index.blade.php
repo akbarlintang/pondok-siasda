@@ -118,6 +118,10 @@
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Aksi
                                 </th>
+                                <th
+                                    class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                                    Cetak
+                                </th>
                             </tr>
                             @endfor
                         </thead>
@@ -166,10 +170,17 @@
                                         <span
                                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
                                         <a href="{{ route('siswas.edit', $data[$i][7]) }}"
-                                            class="text-blue-400 hover:text-blue-600 underline pl-6">Edit</a>
+                                            class="text-blue-400 hover:text-blue-600 underline">Edit</a>
                                         <a href="{{ route('siswas.hapus', $data[$i][7]) }}"
                                             class="text-blue-400 hover:text-blue-600 underline pl-6"
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Remove</a>
+                                    </td>
+                                    <td
+                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                                        <span
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Cetak</span>
+                                        <a href="{{ route('siswa.cetak', $data[$i][7]) }}"
+                                            class="text-blue-400 hover:text-blue-600 underline">Cetak Biodata</a>
                                     </td>
                                 </tr>
                             @endfor

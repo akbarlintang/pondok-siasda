@@ -68,7 +68,7 @@
                         class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         >
                         <a class="w-full" href="{{route('evaluasis.index')}}">
-                            Menu Evaluasi Santri
+                            Menu Pelanggaran Santri
                         </a>
                         </li>
                         <li
@@ -79,7 +79,7 @@
                         </a>
                         </li>
                     @endrole
-                    @hasanyrole('Admin|Guru')
+                    @role('Admin')
                         <li
                         class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         >
@@ -87,6 +87,8 @@
                             Menu Ekstra Santri
                         </a>
                         </li>
+                    @endrole
+                    @hasanyrole('Admin|Guru')
                         <li
                         class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         >
@@ -140,6 +142,7 @@
                                 <a class="w-full" href="{{ route('presensikbms.list-guru', auth()->user()->guru->id) }}">Kegiatan Belajar Mengajar</a>
                             </li>
                         @endrole
+                        @role('Admin')
                         <li
                         class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         >
@@ -147,6 +150,7 @@
                             Kegiatan Eksternal
                         </a>
                         </li>
+                        @endrole
                     </ul>
                     </template>
                     </li>
@@ -403,6 +407,20 @@
                             <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                         </svg>
                         <span class="ml-4">Menu Pengumuman</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li class="relative px-6 py-3">
+                    <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                        href="{{ route('kotak-saran.index') }}">
+                        <svg width="16" height="16" aria-hidden="true" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                            <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                        </svg>
+                        <span class="ml-4">Kotak Saran</span>
                     </a>
                 </li>
             </ul>

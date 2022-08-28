@@ -96,7 +96,7 @@ class EvaluasiControllers extends Controller
     public function show($id)
     {
         $siswa = Siswa::where('id',$id)->first();
-        $evaluasis = Evaluasi::where('foreign',$id)->get();
+        $evaluasis = Evaluasi::where('foreign',$id)->orderBy('tanggal', 'DESC')->get();
         // dd($evaluasis);
         return view ('evaluasis.show',compact('evaluasis','siswa'));
     }

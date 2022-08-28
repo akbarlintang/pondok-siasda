@@ -28,7 +28,7 @@ class PresensiEkstraControllers extends Controller
         $tes = Ekstra::where('id',$ekstras)->first();
         $pilihekstra = PresensiEkstra::select('tanggal')->whereHas('ekstra_siswas', function($q) use ($ekstras) {
             $q->where('ekstra_siswas.foreign_ekstra', $ekstras);
-        })->distinct()->get();
+        })->distinct()->orderBy('tanggal', 'DESC')->get();
         // dd($pilihekstra);
         // dd($pilihekstra[1]->foreign_ekstra);
         // $tes = PresensiEkstra::get();

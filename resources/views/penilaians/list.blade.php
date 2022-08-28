@@ -63,10 +63,23 @@
                                         class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                         UAS
                                     </th>
-                                    <th
+                                    {{-- <th
                                         class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                         Nilai Akhir
-                                    </th>
+                                    </th> --}}
+                                    @if ($siswa->jenjang == 'smk')
+                                        <th
+                                            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                                            Ujian Sekolah
+                                        </th>
+                                    @endif
+
+                                    @if ($siswa->tingkatan == '3')
+                                        <th
+                                            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                                            Ujian Madrasah
+                                        </th>
+                                    @endif
                                     <th
                                         class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                         Aksi
@@ -113,12 +126,28 @@
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UAS</span>
                                                 {{ $nilai->uas == null ? '-' : $nilai->uas }}
                                         </td>
-                                        <td
+                                        {{-- <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai Akhir</span>
                                                 {{ $nilai->nilai_akhir == null ? '-' : $nilai->nilai_akhir }}
-                                        </td>
+                                        </td> --}}
+                                        @if ($siswa->jenjang == 'smk')
+                                            <td
+                                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                                <span
+                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UAS</span>
+                                                    {{ $nilai->ujian_sekolah == null ? '-' : $nilai->ujian_sekolah }}
+                                            </td>
+                                        @endif
+                                        @if ($siswa->tingkatan == '3')
+                                            <td
+                                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                                <span
+                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">UAS</span>
+                                                    {{ $nilai->ujian_madrasah == null ? '-' : $nilai->ujian_madrasah }}
+                                            </td>
+                                        @endif
                                         <td
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                             <span

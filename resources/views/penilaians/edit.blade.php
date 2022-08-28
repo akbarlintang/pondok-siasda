@@ -106,6 +106,26 @@
                                 name="uas" placeholder="NIlai UAS..." />
                         </label>
 
+                        @if ($siswa->jenjang == 'smk')
+                            <label class="block text-sm mt-2">
+                                <span class="text-gray-700 dark:text-gray-400">Nilai Ujian Sekolah</span>
+                                <input type="number"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                    value="{{ isset($penilaian->ujian_sekolah) ? $penilaian->ujian_sekolah : '' }}"
+                                    name="ujian_sekolah" placeholder="NIlai Ujian Sekolah..." />
+                            </label>
+                        @endif
+
+                        @if ($siswa->tingkatan == '3')
+                            <label class="block text-sm mt-2">
+                                <span class="text-gray-700 dark:text-gray-400">Nilai Ujian Madrasah</span>
+                                <input type="number"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                    value="{{ isset($penilaian->ujian_madrasah) ? $penilaian->ujian_madrasah : '' }}"
+                                    name="ujian_madrasah" placeholder="NIlai Ujian Madrasah..." />
+                            </label>
+                        @endif
+
                         <div class="mt-5">
                             <button type="submit"
                             class="bg-blue-500 text-white py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Simpan</button>

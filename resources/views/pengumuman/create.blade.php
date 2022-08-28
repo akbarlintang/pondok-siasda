@@ -53,6 +53,11 @@
                                 ></textarea>
                         </label>
 
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Foto Pengumuman</span>
+                            <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" name="file" type="file">
+                        </label>
+
                         <div class="mt-5">
                             <button type="submit"
                             class="bg-blue-500 text-white py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Buat</button>

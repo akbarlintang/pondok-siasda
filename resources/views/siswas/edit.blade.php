@@ -33,6 +33,11 @@
                                 value="{{$siswa->nis}}"
                                 name="nis" placeholder="Nomor Induk Siswa..." />
                         </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Foto Siswa</span>
+                            <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" name="file" type="file">
+                        </label>
                         
                         <label class="block text-sm mt-2">
                             <span class="text-gray-700 dark:text-gray-400">Jenjang</span>
@@ -84,6 +89,37 @@
                                 value="{{$siswa->tanggal_lahir}}"
                                 name="tanggal_lahir" placeholder="Tanggal Lahir..." />
                         </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Alamat Rumah</span>
+                            <textarea type="text"
+                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                name="alamat" placeholder="Alamat Rumah..." required>{{$siswa->alamat}}</textarea>
+                        </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Jenis Kelamin</span>
+                            <select id="jenis_kelamin" name="jenis_kelamin" required
+                                class="border-black block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md">
+                                <option disabled selected hidden>--Pilih Jenis Kelamin--</option>
+                                <option value="Laki-laki" {{ $siswa->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                <option value="Perempuan" {{ $siswa->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            </select>
+                        </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Agama</span>
+                            <select id="agama" name="agama" required
+                                class="border-black block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md">
+                                <option disabled selected hidden>--Pilih Agama--</option>
+                                <option value="Islam" {{ $siswa->agama == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                <option value="Kristen" {{ $siswa->agama == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                <option value="Katolik" {{ $siswa->agama == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                <option value="Hindu" {{ $siswa->agama == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                <option value="Buddha" {{ $siswa->agama == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                                <option value="Konghucu" {{ $siswa->agama == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                            </select>
+                        </label>
                         
                         <label class="block text-sm mt-2">
                             <span class="text-gray-700 dark:text-gray-400">Tahun Masuk</span>
@@ -109,9 +145,56 @@
                                 name="nomor_wali" placeholder="Nomor Wali..." />
                         </label>
 
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Asal Sekolah</span>
+                            <input type="text"
+                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                value="{{$siswa->asal_sekolah}}"
+                                name="asal_sekolah" placeholder="Asal Sekolah..." required />
+                        </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Alamat Asal Sekolah</span>
+                            <textarea type="text"
+                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                name="alamat_asal_sekolah" placeholder="Alamat Asal Sekolah..." required>{{$siswa->alamat_asal_sekolah}}</textarea>
+                        </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Tahun Lulus</span>
+                            <input type="number"
+                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                value="{{$siswa->tahun_lulus}}"
+                                name="tahun_lulus" placeholder="Tahun Lulus..." required />
+                        </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Nomor Surat Lulus</span>
+                            <input type="text"
+                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                value="{{$siswa->no_surat_lulus}}"
+                                name="no_surat_lulus" placeholder="No. Surat Lulus..." required />
+                        </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Nama Ayah</span>
+                            <input type="text"
+                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                value="{{$siswa->nama_ayah}}"
+                                name="nama_ayah" placeholder="Nama Ayah..." />
+                        </label>
+
+                        <label class="block text-sm mt-2">
+                            <span class="text-gray-700 dark:text-gray-400">Nama Ibu</span>
+                            <input type="text"
+                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                value="{{$siswa->nama_ibu}}"
+                                name="nama_ibu" placeholder="Nama Ibu..." />
+                        </label>
+
                         <div class="mt-5">
                             <button type="submit"
-                            class="bg-blue-500 text-white py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Daftar</button>
+                            class="bg-blue-500 text-white py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Simpan</button>
                         </div>
                     </form>
                 </div>

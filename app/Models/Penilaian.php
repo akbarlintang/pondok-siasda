@@ -20,6 +20,8 @@ class Penilaian extends Model
         'uts',
         'uas',
         'nilai_akhir',
+        'ujian_sekolah',
+        'ujian_madrasah',
     ];
 
     public function Siswa()

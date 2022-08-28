@@ -93,7 +93,7 @@ class HapalanControllers extends Controller
     public function show($id)
     {
         $siswa = Siswa::where('id',$id)->first();
-        $hapalans = Hapalan::where('foreign',$id)->get();
+        $hapalans = Hapalan::where('foreign',$id)->orderBy('tanggal', 'DESC')->get();
         // dd($hapalans);
         return view ('hapalans.show',compact('hapalans','siswa'));
     }

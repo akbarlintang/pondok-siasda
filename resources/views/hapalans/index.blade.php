@@ -171,7 +171,7 @@
                                         <span
                                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
                                         <a href="{{ route('hapalans.show', $data[$i][7]) }}"
-                                            class="text-blue-400 hover:text-blue-600 underline pl-6">Lihat</a>
+                                            class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
                                         <a href="{{ route('hapalans.create', ['id' => $data[$i][7]]) }}"
                                             class="text-blue-400 hover:text-blue-600 underline pl-6">Tambah</a>
                                     </td>

@@ -111,7 +111,7 @@ class PresensiKbmControllers extends Controller
     public function tanggal($jenjang, $tingkatan, $kelas, $mapel_nm, $semester, $guru_id)
     {
         $mapel = MataPelajaran::where('nama', $mapel_nm)->first();
-        $presensis = PresensiKbm::select('tanggal')->where('mapel_id', $mapel->id)->where('semester', $semester)->distinct()->get();
+        $presensis = PresensiKbm::select('tanggal')->where('mapel_id', $mapel->id)->where('semester', $semester)->distinct()->orderBy('tanggal', 'DESC')->get();
         return view ('presensikbm.list-tanggal',compact('presensis', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'semester', 'guru_id'));
     }
 

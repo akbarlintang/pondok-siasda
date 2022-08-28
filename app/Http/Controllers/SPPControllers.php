@@ -95,7 +95,7 @@ class SPPControllers extends Controller
     public function show($id)
     {
         $siswa = Siswa::where('id',$id)->first();
-        $spps = Spp::where('foreign',$id)->get();
+        $spps = Spp::where('foreign',$id)->orderBy('tanggal', 'DESC')->get();
         // dd($spps);
         return view ('spps.show',compact('spps','siswa'));
     }

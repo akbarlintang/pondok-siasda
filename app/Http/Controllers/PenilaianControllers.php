@@ -160,7 +160,8 @@ class PenilaianControllers extends Controller
                 'tugas_3' => $request->tugas_3,
                 'uts' => $request->uts,
                 'uas' => $request->uas,
-                'nilai_akhir' => $nilai_akhir
+                'ujian_sekolah' => $request->ujian_sekolah,
+                'ujian_madrasah' => $request->ujian_madrasah,
             ]);
     
             return redirect()->route('penilaians.list', [$id, $semester])
@@ -171,8 +172,9 @@ class PenilaianControllers extends Controller
     public function ubah($id, $semester)
     {
         $penilaian = Penilaian::whereId($id)->first();
+        $siswa = Siswa::whereId($penilaian->siswa_id)->first();
         $mapels = MataPelajaran::get();
-        return view('penilaians.edit',compact('penilaian', 'semester', 'mapels'));
+        return view('penilaians.edit',compact('penilaian', 'semester', 'mapels', 'siswa'));
     }
 
     public function simpan(Request $request, $id, $semester)
@@ -187,7 +189,8 @@ class PenilaianControllers extends Controller
             'tugas_3' => $request->tugas_3,
             'uts' => $request->uts,
             'uas' => $request->uas,
-            'nilai_akhir' => $nilai_akhir
+            'ujian_sekolah' => $request->ujian_sekolah,
+            'ujian_madrasah' => $request->ujian_madrasah,
         ]);
 
         return redirect()->route('penilaians.list', [$penilaian->siswa_id, $semester])
