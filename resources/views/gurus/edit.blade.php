@@ -52,7 +52,7 @@
                             </select>
                         </label>
 
-                        <label class="block text-sm mt-2">
+                        {{-- <label class="block text-sm mt-2">
                             <span class="text-gray-700 dark:text-gray-400">Tingkatan</span>
                             <select id="tingkatan" name="tingkatan" required
                                 class="border-black block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md">
@@ -60,52 +60,64 @@
                                 <option value="2" @if($guru->tingkatan == '2') selected @endif>2</option>
                                 <option value="3" @if($guru->tingkatan == '3') selected @endif>3</option>
                             </select>
-                        </label>
+                        </label> --}}
 
                         <label class="block text-sm mt-2">
                             <span class="text-gray-700 dark:text-gray-400">Kelas</span>
-                            {{-- <select id="kelas" name="kelas" required
-                                class="border-black block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray rounded-md">
-                                <option value="A" @if($guru->kelas == 'A') selected @endif >A</option>
-                                <option value="B" @if($guru->kelas == 'B') selected @endif >B</option>
-                                <option value="C" @if($guru->kelas == 'C') selected @endif>C</option>
-                                <option value="D" @if($guru->kelas == 'D') selected @endif>D</option>
-                                <option value="E" @if($guru->kelas == 'E') selected @endif>E</option>
-                            </select> --}}
-
-                            <div class="flex items-center mt-1 mb-4">
-                                <div class="mr-6">
-                                    <input id="default-checkbox" type="checkbox" value="A" name="kelas[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('A', $guru->kelas) ? 'checked' : '' }}>
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">A</label>
-                                </div>
-                                <div class="mr-6">
-                                    <input id="default-checkbox" type="checkbox" value="B" name="kelas[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('B', $guru->kelas) ? 'checked' : '' }}>
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">B</label>
-                                </div>
-                                <div class="mr-6">
-                                    <input id="default-checkbox" type="checkbox" value="C" name="kelas[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('C', $guru->kelas) ? 'checked' : '' }}>
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">C</label>
-                                </div>
-                                <div class="mr-6">
-                                    <input id="default-checkbox" type="checkbox" value="D" name="kelas[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('D', $guru->kelas) ? 'checked' : '' }}>
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">D</label>
-                                </div>
-                                <div class="mr-6">
-                                    <input id="default-checkbox" type="checkbox" value="E" name="kelas[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('E', $guru->kelas) ? 'checked' : '' }}>
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">E</label>
-                                </div>
-                            </div>
                         </label>
+                        <div class="bg-white rounded-lg border border-black dark:bg-gray-700 dark:border-gray-600 dark:text-white px-3 py-1">
+                            @for ($i = 1; $i <= 3; $i++)
+                                <label class="block text-sm mt-2">
+                                    <span class="text-gray-700 dark:text-gray-400">Tingkatan {{ $i }}</span>
+                                    <div class="flex items-center mt-1 mb-4">
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="A" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('A', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">A</label>
+                                        </div>
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="B" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('B', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">B</label>
+                                        </div>
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="C" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('C', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">C</label>
+                                        </div>
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="D" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('D', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">D</label>
+                                        </div>
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="E" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('E', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">E</label>
+                                        </div>
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="F" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('F', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">F</label>
+                                        </div>
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="G" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('G', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">G</label>
+                                        </div>
+                                        <div class="mr-6">
+                                            <input id="default-checkbox" type="checkbox" value="H" name="kelas{{ $i }}[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ in_array('H', $guru->kelas[$i-1]) ? 'checked' : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">H</label>
+                                        </div>
+                                    </div>
+                                </label>
+                            @endfor
+                        </div>
 
                         <label class="block text-sm mt-2">
                             <span class="text-gray-700 dark:text-gray-400">Mata Pelajaran</span>
-                            <div class="flex flex-col mb-4">
-                                @foreach ($mapels as $mapel)
-                                    <div class="mt-2">
-                                        <input id="default-checkbox" type="checkbox" value="{{ $mapel->nama }}" name="mapel[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ isset($guru->mapel) ? (in_array($mapel->nama, $guru->mapel) ? 'checked' : '') : '' }}>
-                                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $mapel->nama }}</label>
-                                    </div>
-                                @endforeach
+                            <div class="bg-white rounded-lg border border-black dark:bg-gray-700 dark:border-gray-600 dark:text-white px-3 py-1">
+                                <div class="flex flex-col mb-4">
+                                    @foreach ($mapels as $mapel)
+                                        <div class="mt-2">
+                                            <input id="default-checkbox" type="checkbox" value="{{ $mapel->nama }}" name="mapel[]" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{ isset($guru->mapel) ? (in_array($mapel->nama, $guru->mapel) ? 'checked' : '') : '' }}>
+                                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $mapel->nama }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </label>
                         

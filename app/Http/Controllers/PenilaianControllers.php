@@ -44,10 +44,29 @@ class PenilaianControllers extends Controller
             $jenjang = 'smk';
         }
         
-        $siswas = Siswa::where('tingkatan',$tingkat)
-        ->where('kelas',$kelas)
-        ->where('jenjang',$jenjang)
-        ->paginate(5);
+        if (auth()->user()->hasRole(1)) {
+            $siswas = Siswa::where('tingkatan',$tingkat)
+            ->where('kelas',$kelas)
+            ->where('jenjang',$jenjang)
+            ->paginate(5);
+        } elseif(auth()->user()->hasRole(2)) {
+            if (auth()->user()->guru->jenjang == $jenjang) {
+                $list_kelas = json_decode(auth()->user()->guru->kelas);
+                foreach ($list_kelas as $index => $kls) {
+                    if ($tingkat == $index+1 && in_array($kelas, $kls)) {
+                        $siswas = Siswa::where('tingkatan',$tingkat)
+                        ->where('kelas',$kelas)
+                        ->where('jenjang',$jenjang)
+                        ->paginate(5);
+                    } else {
+                        $siswas = [];
+                    }
+                    
+                }
+            } else {
+                $siswas = [];
+            }
+        }
         
         return view ('penilaians.index',compact('siswas','tingkat','kelas','jenjang'))->with('i', (request()->input('page', 1) -1) * 5);
     }

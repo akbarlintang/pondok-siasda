@@ -26,7 +26,7 @@
                 <button type="submit" class="float-right py-2 px-4 bg-transparent text-blue-600 font-semibold border border-blue-600 rounded hover:bg-blue-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" 
                         >Hadir Semua</button>
             </form>
-            <a href="{{ url()->previous() }}">
+            <a href="{{ route('presensikbms.tanggal', [$jenjang, $tingkatan, $kelas, $mapel->nama, $semester, $guru_id])}}">
                 <button
                     class="float-right py-2 px-4 mr-2 bg-transparent text-blue-600 font-semibold border border-blue-600 rounded hover:bg-blue-600 hover:text-white hover:border-transparent transition ease-in duration-200">
                     Kembali

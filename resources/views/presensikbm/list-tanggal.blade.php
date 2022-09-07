@@ -63,7 +63,7 @@
                                             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                             <span
                                                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                            <a href="{{ route('presensikbms.input', [$jenjang, $tingkatan, $kelas, $mapel->nama, $presensi->tanggal]) }}"
+                                            <a href="{{ route('presensikbms.input', [$jenjang, $tingkatan, $kelas, $mapel->nama, $semester, $guru_id, $presensi->tanggal]) }}"
                                                 class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
                                         </td>
                                     </tr>
@@ -104,7 +104,7 @@
                 }
 
             </style>
-            <a href="{{route('presensikbms.buat', [$jenjang, $tingkatan, $kelas, $mapel->nama, $semester])}}">
+            <a href="{{route('presensikbms.buat', [$jenjang, $tingkatan, $kelas, $mapel->nama, $semester, $guru_id])}}">
             <button title="Tambah data penilaian"
             class="fixed z-90 bottom-8 right-8 bg-blue-600 w-20 h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl flex">+</button>
             </a>   

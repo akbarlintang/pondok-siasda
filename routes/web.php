@@ -69,9 +69,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('presensikbms/list/guru/{id}', 'App\Http\Controllers\PresensiKbmControllers@listGuru')->name('presensikbms.list-guru');
     Route::get('presensikbms/list/semester/{jenjang}-{tingkat}{kelas}/{mapel}/{guru}', 'App\Http\Controllers\PresensiKbmControllers@semester')->name('presensikbms.semester');
     Route::get('presensikbms/list/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}/{guru}', 'App\Http\Controllers\PresensiKbmControllers@tanggal')->name('presensikbms.tanggal');
-    Route::get('presensikbms/buat/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}', 'App\Http\Controllers\PresensiKbmControllers@buat')->name('presensikbms.buat');
+    Route::get('presensikbms/buat/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}/{guru}', 'App\Http\Controllers\PresensiKbmControllers@buat')->name('presensikbms.buat');
     Route::post('presensikbms/buat/tanggal', 'App\Http\Controllers\PresensiKbmControllers@tambah')->name('presensikbms.tambah');
-    Route::get('presensikbms/input/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{tanggal}', 'App\Http\Controllers\PresensiKbmControllers@input')->name('presensikbms.input');
+    Route::get('presensikbms/input/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}/{guru}/{tanggal}', 'App\Http\Controllers\PresensiKbmControllers@input')->name('presensikbms.input');
     Route::post('presensikbms/updateAll', 'App\Http\Controllers\PresensiKbmControllers@updateAll')->name('presensikbms.update-all');
 
     Route::get('rekap-kbm/{id}', 'App\Http\Controllers\RekapKbmControllers@index')->name('rekap-kbm.index');

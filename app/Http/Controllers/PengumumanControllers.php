@@ -57,5 +57,6 @@ class PengumumanControllers extends Controller
         $unduh = Storage::url('public/pengumuman/'.$pengumuman->file);
 
         return response()->download(public_path($unduh));
+        // return response()->download(public_path('storage/public/pengumuman/'.$pengumuman->file));
     }
 }

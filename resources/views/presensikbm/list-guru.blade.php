@@ -54,30 +54,32 @@
                                 </tr>
                             </thead>
                             <tbody class="flex-1 sm:flex-none">
-                                @foreach ($guru->kelas as $kelas)
-                                    @foreach ($guru->mapel as $mapel)
-                                        <tr
-                                            class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                                            <td
-                                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                                <span
-                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Kelas</span>
-                                                    {{ $guru->tingkatan . $kelas }}
-                                            </td>
-                                            <td
-                                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                                <span
-                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Mata Pelajaran</span>
-                                                    {{ $mapel }}
-                                            </td>
-                                            <td
-                                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                                <span
-                                                    class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
-                                                <a href="{{ route('presensikbms.semester', [$guru->jenjang, $guru->tingkatan, $kelas, $mapel, $guru->id]) }}"
-                                                    class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
-                                            </td>
-                                        </tr>
+                                @foreach ($guru->kelas as $index => $kelas)
+                                    @foreach ($kelas as $kl)
+                                        @foreach ($guru->mapel as $mapel)
+                                            <tr
+                                                class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                                                <td
+                                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                                    <span
+                                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Kelas</span>
+                                                        {{ $index+1 . $kl }}
+                                                </td>
+                                                <td
+                                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                                    <span
+                                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Mata Pelajaran</span>
+                                                        {{ $mapel }}
+                                                </td>
+                                                <td
+                                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                                                    <span
+                                                        class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>
+                                                    <a href="{{ route('presensikbms.semester', [$guru->jenjang, $index+1, $kl, $mapel, $guru->id]) }}"
+                                                        class="text-blue-400 hover:text-blue-600 underline">Lihat</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
                                 @endforeach
                             </tbody>

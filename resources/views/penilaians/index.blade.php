@@ -130,7 +130,9 @@
                             @endfor
                         </tbody>
                     </table>
-                    {{ $siswas->links() }}
+                    @if (count($siswas) > 0)
+                        {{ $siswas->links() }}
+                    @endif
                 </div>
             </body>
 

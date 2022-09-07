@@ -50,7 +50,8 @@
     <!-- HALAMAN 1 GAN -->
     <div style="margin: 2em;">
         <div style="float: right">
-            <img src="{{ url('storage/foto/'.$siswa->foto) }}" alt="{{ $siswa->nama }}" />
+            {{-- <img src="{{ url('storage/foto/'.$siswa->foto) }}" alt="{{ $siswa->nama }}" /> --}}
+            <img src="{{ public_path('storage/public/foto/'.$siswa->foto) }}" alt="{{ $siswa->nama }}" style="max-width: 150px;" />
         </div>
         <table style="border: 0px solid black; width: 100%; border-collapse: collapse;" class="f12">
             <thead>

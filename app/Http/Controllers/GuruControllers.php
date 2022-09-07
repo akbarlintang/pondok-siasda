@@ -51,12 +51,20 @@ class GuruControllers extends Controller
         // Beri role user untuk user yang baru dibuat
         $user->assignRole('Guru');
 
+        $array = [];
+        $kelas = [];
+        array_push($kelas, ($request->kelas1 ? $request->kelas1 : $array));
+        array_push($kelas, ($request->kelas2 ? $request->kelas2 : $array));
+        array_push($kelas, ($request->kelas3 ? $request->kelas3 : $array));
+
+        $tingkatan = [1, 2, 3];
+
         $form_data = array(
             'nama'       =>   $request->nama_guru,
             'nik'       =>   $request->nik,
             'jenjang'       =>   $request->jenjang,
-            'tingkatan'       =>   $request->tingkatan,
-            'kelas'       =>   json_encode($request->kelas),
+            'tingkatan'       =>   json_encode($tingkatan),
+            'kelas'       =>   json_encode($kelas),
             'mapel'       =>   json_encode($request->mapel),
             'tempat_lahir'       =>   $request->tempat_lahir,
             'tanggal_lahir'       =>   $request->tanggal_lahir,
@@ -104,12 +112,20 @@ class GuruControllers extends Controller
      */
     public function update(Request $request, Guru $guru)
     {
+        $array = [];
+        $kelas = [];
+        array_push($kelas, ($request->kelas1 ? $request->kelas1 : $array));
+        array_push($kelas, ($request->kelas2 ? $request->kelas2 : $array));
+        array_push($kelas, ($request->kelas3 ? $request->kelas3 : $array));
+
+        $tingkatan = [1, 2, 3];
+
         Guru::where('id',$guru->id)->update([
             'nama'       =>   $request->nama_guru,
             'nik'       =>   $request->nik,
             'jenjang'       =>   $request->jenjang,
-            'tingkatan'       =>   $request->tingkatan,
-            'kelas'       =>   json_encode($request->kelas),
+            'tingkatan'       =>   json_encode($tingkatan),
+            'kelas'       =>   json_encode($kelas),
             'mapel'       =>   json_encode($request->mapel),
             'tempat_lahir'       =>   $request->tempat_lahir,
             'tanggal_lahir'       =>   $request->tanggal_lahir,

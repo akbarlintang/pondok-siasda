@@ -115,9 +115,9 @@ class PresensiKbmControllers extends Controller
         return view ('presensikbm.list-tanggal',compact('presensis', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'semester', 'guru_id'));
     }
 
-    public function buat($jenjang, $tingkatan, $kelas, $mapel, $semester)
+    public function buat($jenjang, $tingkatan, $kelas, $mapel, $semester, $guru_id)
     {
-        return view ('presensikbm.create',compact('jenjang', 'tingkatan', 'kelas', 'mapel', 'semester'));
+        return view ('presensikbm.create',compact('jenjang', 'tingkatan', 'kelas', 'mapel', 'semester', 'guru_id'));
     }
 
     public function tambah(Request $request)
@@ -138,15 +138,15 @@ class PresensiKbmControllers extends Controller
             ]);
         }
 
-        return redirect()->route('presensikbms.tanggal', [$request->jenjang, $request->tingkatan, $request->kelas, $request->mapel, $request->semester])
+        return redirect()->route('presensikbms.tanggal', [$request->jenjang, $request->tingkatan, $request->kelas, $request->mapel, $request->semester, $request->guru_id])
             ->with(['success'=>'Tanggal KBM Berhasil Ditambahkan !']);
     }
 
-    public function input($jenjang, $tingkatan, $kelas, $mapel_nm, $tanggal)
+    public function input($jenjang, $tingkatan, $kelas, $mapel_nm, $semester, $guru_id,$tanggal)
     {
         $mapel = MataPelajaran::where('nama', $mapel_nm)->first();
         $presensis = PresensiKbm::where('tanggal', $tanggal)->get();
-        return view ('presensikbm.edit',compact('presensis', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'tanggal'));
+        return view ('presensikbm.edit',compact('presensis', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'tanggal', 'semester','guru_id'));
     }
 
     public function updateAll(Request $request)
