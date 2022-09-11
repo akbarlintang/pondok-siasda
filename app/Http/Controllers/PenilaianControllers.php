@@ -70,6 +70,8 @@ class PenilaianControllers extends Controller
                 } else {
                     $siswas = [];
                 }
+            } else {
+                $siswas = [];
             }
         }
         
