@@ -69,11 +69,16 @@ class PresensiKbmControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-        PresensiKbm::where('id', $id)->update([
-            'status' => $request->status
-        ]);
-
-        return redirect()->back()->with(['success' => 'Berhasil Mengubah Kehadiran !']);
+        if ($request->status == 'hadir') {
+            PresensiKbm::where('id', $request->id)->update([
+                'status' => $request->status,
+                'keterangan' => null
+            ]);
+    
+            return redirect()->back()->with(['success' => 'Berhasil Mengubah Kehadiran !']);
+        } else {
+            return redirect()->route('presensikbms.keterangan', [$request->id, $request->jenjang, $request->tingkatan, $request->kelas, $request->mapel, $request->semester, $request->guru_id, $request->tanggal]);
+        }
     }
 
     /**
@@ -142,7 +147,7 @@ class PresensiKbmControllers extends Controller
             ->with(['success'=>'Tanggal KBM Berhasil Ditambahkan !']);
     }
 
-    public function input($jenjang, $tingkatan, $kelas, $mapel_nm, $semester, $guru_id,$tanggal)
+    public function input($jenjang, $tingkatan, $kelas, $mapel_nm, $semester, $guru_id, $tanggal)
     {
         $mapel = MataPelajaran::where('nama', $mapel_nm)->first();
         $presensis = PresensiKbm::where('tanggal', $tanggal)->get();
@@ -155,10 +160,36 @@ class PresensiKbmControllers extends Controller
         
         foreach ($presensis as $presensi) {
             PresensiKbm::whereId($presensi->id)->update([
-                'status' => 'hadir'
+                'status' => 'hadir',
+                'keterangan' => null
             ]);
         }
 
         return redirect()->back()->with(['success' => 'Berhasil Mengubah Kehadiran !']);
+    }
+
+    public function keterangan($id, $jenjang, $tingkatan, $kelas, $mapel, $semester, $guru_id, $tanggal)
+    {
+        $data = PresensiKbm::whereId($id)->first();
+        $jenjang = $jenjang;
+        $tingkatan = $tingkatan;
+        $kelas = $kelas;
+        $mapel = $mapel;
+        $semester = $semester;
+        $guru_id = $guru_id;
+        $tanggal = $tanggal;
+
+        return view ('presensikbm.keterangan',compact('data', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'tanggal', 'semester','guru_id'));
+    }
+
+    public function keteranganUpdate(Request $request)
+    {
+        PresensiKbm::whereId($request->id)->update([
+            'status' => $request->status,
+            'keterangan' => $request->keterangan
+        ]);
+
+        return redirect()->route('presensikbms.input', [$request->jenjang, $request->tingkatan, $request->kelas, $request->mapel, $request->semester, $request->guru_id, $request->tanggal])
+            ->with(['success'=>'Status Kehadiran Berhasil Diubah !']);
     }
 }

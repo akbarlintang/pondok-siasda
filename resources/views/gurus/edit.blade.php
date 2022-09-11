@@ -2,7 +2,7 @@
     <div class="p-6">
         <div class="max-w-7xl mb-2 mx-auto sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-700">
             <main class="h-full pb-16 overflow-y-auto">
-                <a href="{{ route('siswas.index')}}">
+                <a href="{{ route('gurus.index')}}">
                     <button
                         class="mb-3 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple float-right">
                         Kembali

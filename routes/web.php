@@ -73,6 +73,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('presensikbms/buat/tanggal', 'App\Http\Controllers\PresensiKbmControllers@tambah')->name('presensikbms.tambah');
     Route::get('presensikbms/input/tanggal/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}/{guru}/{tanggal}', 'App\Http\Controllers\PresensiKbmControllers@input')->name('presensikbms.input');
     Route::post('presensikbms/updateAll', 'App\Http\Controllers\PresensiKbmControllers@updateAll')->name('presensikbms.update-all');
+    Route::get('presensikbms/keterangan/{id}/{jenjang}-{tingkat}{kelas}/{mapel}/{semester}/{guru}/{tanggal}', 'App\Http\Controllers\PresensiKbmControllers@keterangan')->name('presensikbms.keterangan');
+    Route::patch('presensikbms/keterangan/update', 'App\Http\Controllers\PresensiKbmControllers@keteranganUpdate')->name('presensikbms.keteranganUpdate');
 
     Route::get('rekap-kbm/{id}', 'App\Http\Controllers\RekapKbmControllers@index')->name('rekap-kbm.index');
     Route::get('rekap-kbm/{semester}/{tingkat}', 'App\Http\Controllers\RekapKbmControllers@show')->name('rekap-kbm.show');

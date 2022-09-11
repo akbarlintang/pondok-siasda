@@ -17,7 +17,8 @@ class PresensiKbm extends Model
         'tingkatan',
         'kelas',
         'semester',
-        'status'
+        'status',
+        'keterangan'
     ];
 
     public function Siswa()

@@ -51,6 +51,10 @@
                                     class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
                                     Aksi
                                 </th>
+                                <th
+                                    class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                                    Keterangan
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="flex-1 sm:flex-none">
@@ -77,14 +81,45 @@
                                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                         <span
                                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Aksi</span>    
-                                            <form action="{{ route('presensikbms.update', $presensi->id)}}" method="post">
+                                            <form action="{{ route('presensikbms.update', $presensi->id )}}" method="post">
                                                 @csrf
                                                 @method('patch')
+                                                <input type="hidden" name="id" value="{{ $presensi->id }}">
+                                                <input type="hidden" name="jenjang" value="{{ $jenjang }}">
+                                                <input type="hidden" name="tingkatan" value="{{ $tingkatan }}">
+                                                <input type="hidden" name="kelas" value="{{ $kelas }}">
+                                                <input type="hidden" name="mapel" value="{{ $mapel->nama }}">
+                                                <input type="hidden" name="semester" value="{{ $semester }}">
+                                                <input type="hidden" name="guru_id" value="{{ $guru_id }}">
+                                                <input type="hidden" name="tanggal" value="{{ $presensis[0]->tanggal }}">
+
                                                 <button class="py-2 px-4 bg-transparent text-green-600 font-semibold border border-green-600 rounded hover:bg-green-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" 
                                                     value="hadir" name="status">Hadir</button>
                                                 <button class="py-2 px-4 bg-transparent text-red-600 font-semibold border border-red-600 rounded hover:bg-red-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" 
                                                     value="tidak hadir" name="status">Tidak Hadir</button>
                                             </form>
+                                    </td>
+                                    <td
+                                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                                        <span
+                                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Keterangan</span>
+
+                                            {{ $presensi->keterangan }}
+                                            {{-- @if ($presensi->status == 'tidak hadir')
+                                                <form action="{{ route('presensikbms.keterangan', $presensi->id)}}" method="post">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <div class="flex flex-row">
+                                                        <input type="text"
+                                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:ring-2 focus:ring-blue-600 dark:text-gray-300 dark:focus:shadow-outline-gray form-input rounded-md"
+                                                        value="{{ $presensi->keterangan }}" name="keterangan" placeholder="Keterangan..."/>
+
+                                                        <button type="submit" class="bg-blue-500 text-white ml-2 py-2 px-4 rounded shadow-sm focus:outline-none hover:bg-indigo-700">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            @else
+                                                <div>-</div>
+                                            @endif --}}
                                     </td>
                                 </tr>
                             @endforeach

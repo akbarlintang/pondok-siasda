@@ -54,17 +54,22 @@ class PenilaianControllers extends Controller
                 $list_kelas = json_decode(auth()->user()->guru->kelas);
                 foreach ($list_kelas as $index => $kls) {
                     if ($tingkat == $index+1 && in_array($kelas, $kls)) {
-                        $siswas = Siswa::where('tingkatan',$tingkat)
+                        $sis = Siswa::where('tingkatan',$tingkat)
                         ->where('kelas',$kelas)
                         ->where('jenjang',$jenjang)
                         ->paginate(5);
-                    } else {
-                        $siswas = [];
+
+                        if ($sis) {
+                            $temp = $sis;
+                        }
                     }
-                    
                 }
-            } else {
-                $siswas = [];
+
+                if (isset($temp)) {
+                    $siswas = $temp;
+                } else {
+                    $siswas = [];
+                }
             }
         }
         
