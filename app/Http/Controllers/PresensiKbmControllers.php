@@ -150,7 +150,7 @@ class PresensiKbmControllers extends Controller
     public function input($jenjang, $tingkatan, $kelas, $mapel_nm, $semester, $guru_id, $tanggal)
     {
         $mapel = MataPelajaran::where('nama', $mapel_nm)->first();
-        $presensis = PresensiKbm::where('tanggal', $tanggal)->get();
+        $presensis = PresensiKbm::where('tanggal', $tanggal)->where('jenjang', $jenjang)->where('tingkatan', $tingkatan)->where('kelas', $kelas)->where('mapel_id', $mapel->id)->where('semester', $semester)->get();
         return view ('presensikbm.edit',compact('presensis', 'jenjang', 'tingkatan', 'kelas', 'mapel', 'tanggal', 'semester','guru_id'));
     }
 
